@@ -1,15 +1,23 @@
 .login-main {
     display: flex;
-    align-items: center;
+    justify-content: center;
     width: 100vw;
     height: 100vh;
-    padding: 70px;
     background-image: url('../assets/img/malte-michels-s4wGZw3UuLk-unsplash.jpg');
     background-size: cover;
     overflow: hidden;
-    justify-content: space-between;
 }
 
+.login-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 2000px;
+    padding: 50px 100px;
+}
+
+/* lado esquerdo */
 .login-content-left {
     display: flex;
     flex-direction: column;
@@ -18,11 +26,151 @@
 
 .login-content-left img {
     display: flex;
-    width: 220px;
+    width: 210px;
 }
 
 .login-content-left p {
     margin-left: 2px;
     font-size: 0.95rem;
     font-weight: 200;
+}
+
+/* lado direito */
+.wrapper-login {
+    display: flex;
+    flex-direction: column;
+    width: 420px;
+    padding: 40px;
+    border-radius: 4px;
+    background: #f5f5f5;
+}
+
+.wrapper-login h1 {
+    font-size: 1.7rem;
+    font-weight: 500;
+}
+
+.wrapper-login-ways {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.wrapper-login-ways button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border: 1px solid #d9d9d9;
+    border-radius: 50%;
+    padding: 10px;
+    background: transparent;
+    overflow: hidden;
+    transition: var(--transition-2s);
+    cursor: pointer;
+}
+
+.wrapper-login-ways button:hover {
+    padding: 8px;
+}
+
+.wrapper-login-ways button img {
+    display: flex;
+    width: 100%;
+}
+
+.wrapper-login-or {
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    font-size: 0.8rem;
+    gap: 10px;
+    color: #b3b3b3;
+}
+
+.wrapper-login-or hr {
+    display: flex;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #d9d9d9;
+}
+
+.wrapper-login h2 {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #3b3b3b;
+}
+
+.wrapper-login h3 {
+    margin-top: 15px;
+    font-size: 0.80rem;
+    font-weight: 500;
+    color: #5b5b5b;
+}
+
+.wrapper-login h3 a {
+    text-decoration: underline;
+    color: var(--link-color);
+}
+
+.wrapper-login h3 a:hover {
+    color: #0053c0;
+}
+
+.wrapper-login-input {
+    display: flex;
+    flex-direction: column;
+}
+
+.wrapper-login-input label {
+    margin-top: 15px;
+    font-size: 0.7rem;
+}
+
+.wrapper-login-input input {
+    display: flex;
+    width: 100%;
+    outline: none;
+    border: none;
+    background: none;
+}
+
+.input-login {
+    display: flex;
+    width: 100%;
+    height: 25px;
+    padding: 0 5px;
+    border: 1px solid #b3b3b3;
+    border-radius: 2px;
+}
+
+.input-login button {
+    display: flex;
+    padding: 0 5px;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.wrapper-login-submit {
+    margin-top: 60px;
+    display: flex;
+    justify-content: end;
+}
+
+.wrapper-login-submit button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 13px;
+    border: none;
+    border-radius: 20px;
+    background: var(--link-color);
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--light-color);
 }
