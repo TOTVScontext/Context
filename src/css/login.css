@@ -1,0 +1,28 @@
+.login-main {
+    display: flex;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    padding: 70px;
+    background-image: url('../assets/img/malte-michels-s4wGZw3UuLk-unsplash.jpg');
+    background-size: cover;
+    overflow: hidden;
+    justify-content: space-between;
+}
+
+.login-content-left {
+    display: flex;
+    flex-direction: column;
+    color: var(--light-color);
+}
+
+.login-content-left img {
+    display: flex;
+    width: 220px;
+}
+
+.login-content-left p {
+    margin-left: 2px;
+    font-size: 0.95rem;
+    font-weight: 200;
+}
