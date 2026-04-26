@@ -173,4 +173,13 @@
     font-size: 0.8rem;
     font-weight: 500;
     color: var(--light-color);
+    cursor: pointer;
+}
+
+.login-error {
+    margin-top: 3px;
+    position: absolute;
+    justify-content: center;
+    color: #ef3939;
+    font-size: 0.75rem;
 }
