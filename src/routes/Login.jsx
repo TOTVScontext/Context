@@ -16,7 +16,7 @@ const Login = () => {
 
     const [showPass, setShowPass] = useState(false)
     const { user } = useUser()
-    const [form, setForm] = useState({ email: '', password: '' })
+    const [form, setForm] = useState({ name: '', email: '', password: '' })
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(null)
 
@@ -39,7 +39,7 @@ const Login = () => {
                 await login(form.email, form.password)
                 window.location.href = '/home'
             } else {
-                await register(form.email, form.password)
+                await register(form.name, form.email, form.password)
                 navigate('?view=login', { replace: true })
             }
         } catch (err) {
@@ -88,6 +88,24 @@ const Login = () => {
 
                         <form onSubmit={handleSubmit} noValidate>
                             <section className='wrapper-login-input'>
+                                {isRegister && (
+                                    <>
+                                        <label htmlFor="name">Nome</label>
+                                        <div className='input-login'>
+                                            <input
+                                                type="text"
+                                                id="name"
+                                                name="name"
+                                                value={form.name}
+                                                onChange={handleChange}
+                                                autoComplete="name"
+                                                required
+                                                disabled={loading}
+                                            />
+                                        </div>
+                                    </>
+                                )}
+
                                 <label htmlFor="email">Endereço de email</label>
                                 <div className='input-login'>
                                     <input
@@ -128,16 +146,12 @@ const Login = () => {
                                 <p className='login-error' role="alert">{error}</p>
                             )}
 
-                            
-
                             <div className='wrapper-login-submit'>
                                 <button type="submit" disabled={loading}>
                                     {loading ? 'Aguarde...' : 'Continuar'}
                                 </button>
                             </div>
                         </form>
-
-                        
 
                     </section>
                 </article>
