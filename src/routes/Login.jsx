@@ -63,12 +63,12 @@ const Login = () => {
                         <h1>{isRegister ? 'Criar uma conta' : 'Bem-vindo de volta'}</h1>
 
                         <section className='wrapper-login-ways'>
-                            <button type="button"><img title='Google' src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/3840px-Google_%22G%22_logo.svg.png" /></button>
-                            <button type="button"><img title='TOTVS' src={iconD} /></button>
-                            <button type="button"><img title='Facebook' src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Facebook_Logo_2023.png/960px-Facebook_Logo_2023.png" /></button>
-                            <button type="button"><img title='Apple' src="https://cdn-icons-png.flaticon.com/256/25/25345.png" /></button>
-                            <button type="button"><img title='Microsoft' src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Microsoft_logo.svg/960px-Microsoft_logo.svg.png" /></button>
-                            <button type="button"><img title='GitHub' src="https://cdn-icons-png.flaticon.com/512/25/25231.png" /></button>
+                            <button><img title='Google' src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/3840px-Google_%22G%22_logo.svg.png" /></button>
+                            <button><img title='TOTVS' src={iconD} /></button>
+                            <button><img title='Facebook' src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Facebook_Logo_2023.png/960px-Facebook_Logo_2023.png" /></button>
+                            <button><img title='Apple' src="https://cdn-icons-png.flaticon.com/256/25/25345.png" /></button>
+                            <button><img title='Microsoft' src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Microsoft_logo.svg/960px-Microsoft_logo.svg.png" /></button>
+                            <button><img title='GitHub' src="https://cdn-icons-png.flaticon.com/512/25/25231.png" /></button>
                         </section>
 
                         <div className='wrapper-login-or'>
