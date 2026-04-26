@@ -55,7 +55,7 @@ const Login = () => {
 
                 <article className='login-content-left'>
                     <img src={logoContextL} alt="TOTVScontext" />
-                    <p>Faça logon ou crie uma conta</p>
+                    <p>Faça login ou crie uma conta</p>
                 </article>
 
                 <article className='login-content-right'>
@@ -81,7 +81,7 @@ const Login = () => {
 
                         <h3>
                             {isRegister
-                                ? <>Já tem uma conta TOTVScontext? <Link to="?view=login">Faça logon</Link></>
+                                ? <>Já tem uma conta TOTVScontext? <Link to="?view=login">Faça login</Link></>
                                 : <>Não tem uma conta? <Link to="?view=register">Criar conta</Link></>
                             }
                         </h3>
@@ -128,12 +128,16 @@ const Login = () => {
                                 <p className='login-error' role="alert">{error}</p>
                             )}
 
+                            
+
                             <div className='wrapper-login-submit'>
                                 <button type="submit" disabled={loading}>
                                     {loading ? 'Aguarde...' : 'Continuar'}
                                 </button>
                             </div>
                         </form>
+
+                        
 
                     </section>
                 </article>
