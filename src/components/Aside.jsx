@@ -15,6 +15,7 @@ const Aside = () => {
 
         try {
             await logout()
+            window.location.reload()
             navigate('/login', { replace: true })
         } catch (err) {
             console.error('Logout failed', err)
