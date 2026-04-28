@@ -10,7 +10,9 @@ const Header = () => {
     return (
         <header className="header-main">
             <section className="header-content-left">
-                <img src={icon} />
+                <Link to='/home'>
+                    <img src={icon} />
+                </Link>
                 <div>
                     <h1>Olá, {user?.profile?.name}!</h1>
                     <p>Explore informações e atividades sobre sua propriedade.</p>
