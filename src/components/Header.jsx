@@ -20,11 +20,11 @@ const Header = () => {
                 <div className='header-search'>
                     <input type="text" placeholder='Encontrar..' />
                     <button>
-                        <Search size={16} />
+                        <Search size={19} />
                     </button>
                 </div>
-                <Link><MessageCircle size={16} /></Link>
-                <Link><Bell size={16} /></Link>
+                <Link><MessageCircle size={19} /></Link>
+                <Link><Bell size={19} /></Link>
             </section>
         </header>
     )
