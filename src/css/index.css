@@ -34,13 +34,19 @@ body {
 }
 
 
+/* content */
+.content-main {
+  display: flex;
+  padding: 0 24.5px;
+}
+
 /* Header */
 .header-main {
   display: flex;
   justify-content: space-between;
   width: 100vw;
   height: fit-content;
-  padding: 30px;
+  padding: 30px 30px 10px;
 }
 
 .header-content-left {
@@ -125,4 +131,105 @@ body {
 
 .header-right a:hover {
   color: var(--black);
+}
+
+/* Aside */
+.aside-main {
+  position: sticky;
+  top: 50px;
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  height: 80vh;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.aside-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px;
+  background: var(--light-color);
+  border: 1px solid var(--border-color);
+  border-radius: 50px;
+  gap: 50px;
+}
+
+.aside-nav nav ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.aside-nav a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  color: var(--gray-color-2);
+  transition: var(--transition-2s);
+}
+
+.aside-nav a:hover {
+  background: #e7e7e7;
+  color: var(--dark-color);
+}
+
+.aside-nav a.active {
+  background: var(--black);
+  color: var(--light-color);
+}
+
+.aside-nav a.active:hover {
+  background: var(--black);
+  color: var(--light-color);
+}
+
+.aside-nav div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.aside-profile {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.aside-profile button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: none;
+  border: none;
+  transition: var(--transition-2s);
+  color: var(--dark-color);
+}
+
+.aside-profile button:hover {
+  color: var(--danger-color);
+}
+
+.aside-profile a {
+  display: flex;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.aside-profile a:hover img {
+  transform: scale(1.1);
+}
+
+.aside-profile a img {
+  display: flex;
+  width: 100%;
+  transition: var(--transition-2s);
 }
