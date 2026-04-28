@@ -3,18 +3,31 @@ import { useEffect, useState, useCallback } from 'react'
 let cachedUser = null
 let lastFetch = 0
 let pendingPromise = null
-const CACHE_TTL = 1000 * 60 * 5
+
+const CACHE_TTL = 1000 * 60 * 5 // 5 min
+
+const listeners = new Set()
+
+function notifyListeners(user) {
+  listeners.forEach(fn => fn(user))
+}
 
 export function useUser() {
   const [user, setUserState] = useState(cachedUser)
   const [loading, setLoading] = useState(!cachedUser)
   const [error, setError] = useState(null)
 
-  const setUser = (newUser) => {
+  useEffect(() => {
+    const listener = (newUser) => setUserState(newUser)
+    listeners.add(listener)
+    return () => listeners.delete(listener)
+  }, [])
+
+  const setUser = useCallback((newUser) => {
     cachedUser = newUser
     lastFetch = Date.now()
-    setUserState(newUser)
-  }
+    notifyListeners(newUser)
+  }, [])
 
   const fetchUser = useCallback(async () => {
     if (cachedUser && Date.now() - lastFetch < CACHE_TTL) {
@@ -25,9 +38,15 @@ export function useUser() {
 
     if (pendingPromise) {
       setLoading(true)
-      const data = await pendingPromise
-      setUserState(data)
-      setLoading(false)
+      try {
+        const data = await pendingPromise
+        setUserState(data)
+      } catch (err) {
+        setError(err.message)
+        setUserState(null)
+      } finally {
+        setLoading(false)
+      }
       return
     }
 
@@ -36,30 +55,33 @@ export function useUser() {
 
     pendingPromise = fetch('https://api-totvs-context.vercel.app/api/auth/me', {
       method: 'GET',
-      credentials: 'include'
+      credentials: 'include',
     })
-      .then(async res => {
+      .then(async (res) => {
         if (!res.ok) {
           if (res.status === 401) {
             cachedUser = null
             lastFetch = 0
+            notifyListeners(null)
             return null
           }
-          throw new Error('Failed to fetch user')
+          throw new Error(`Erro ao buscar usuário: ${res.status} ${res.statusText}`)
         }
 
         const data = await res.json()
 
-        cachedUser = {
+        const normalizedUser = {
           id: data.id,
           email: data.email,
-          name: data.name,
           profile: data.profile,
           settings: data.settings,
         }
 
+        cachedUser = normalizedUser
         lastFetch = Date.now()
-        return cachedUser
+        notifyListeners(normalizedUser)
+
+        return normalizedUser
       })
       .finally(() => {
         pendingPromise = null
@@ -76,22 +98,28 @@ export function useUser() {
     }
   }, [])
 
+  const clearUserCache = useCallback(() => {
+    cachedUser = null
+    lastFetch = 0
+    notifyListeners(null)
+  }, [])
+
+  const refreshUser = useCallback(async () => {
+    cachedUser = null
+    lastFetch = 0
+    await fetchUser()
+  }, [fetchUser])
+
   useEffect(() => {
     fetchUser()
   }, [fetchUser])
-
-  const clearUserCache = () => {
-    cachedUser = null
-    lastFetch = 0
-    setUserState(null)
-  }
 
   return {
     user,
     setUser,
     loading,
     error,
-    refreshUser: fetchUser,
-    clearUserCache
+    refreshUser,
+    clearUserCache,
   }
 }
