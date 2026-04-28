@@ -30,7 +30,7 @@ const Aside = () => {
                         <NavLink to='/home'><Grid size={18} /></NavLink>
                         <NavLink to='/'><Archive size={18} /></NavLink>
                         <NavLink to='/'><BarChart2 size={18} /></NavLink>
-                        <NavLink to='/'><Aperture size={18} /></NavLink>
+                        <NavLink to='/chat'><Aperture size={18} /></NavLink>
                         <NavLink to='/'><Users size={18} /></NavLink>
                         <NavLink to='/'><Calendar size={18} /></NavLink>
                     </ul>

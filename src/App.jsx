@@ -4,6 +4,7 @@ import Login from "./routes/Login"
 import ChangeIcon from './hooks/ChangeIcon'
 import { ConsoleBanner } from "./hooks/ConsoleBanner"
 import ProtectedRoute from "./routes/ProtectedRoute"
+import Chat from "./routes/Chat"
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route element={<ProtectedRoute />}>
           <Route path='/home' element={<Home />} />
+          <Route path='/chat' element={<Chat />} />
         </Route>
       </Routes>
     </BrowserRouter>
