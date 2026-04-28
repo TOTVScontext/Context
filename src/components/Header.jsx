@@ -23,8 +23,8 @@ const Header = () => {
                         <Search size={19} />
                     </button>
                 </div>
-                <Link><MessageCircle size={19} /></Link>
-                <Link><Bell size={19} /></Link>
+                <Link to='/message'><MessageCircle size={19} /></Link>
+                <Link to='/notifications'><Bell size={19} /></Link>
             </section>
         </header>
     )
