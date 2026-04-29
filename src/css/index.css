@@ -38,6 +38,7 @@ body {
 .content-main {
   display: flex;
   padding: 0 24.5px;
+  gap: 25px;
 }
 
 /* Header */
