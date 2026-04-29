@@ -2,6 +2,7 @@ import '../css/chat.css'
 import Aside from "../components/Aside"
 import Header from "../components/Header"
 import { MessageSquare } from '@geist-ui/icons'
+import AsideChat from '../components/chat/AsideChat'
 
 const Chat = () => {
     return (
@@ -13,15 +14,7 @@ const Chat = () => {
                     <section className='chat-active'>
 
                     </section>
-                    <aside className='chat-chats'>
-                        <header className='chat-chats-header'>
-                            <h1>Meus Chats</h1>
-                            <MessageSquare size={15} />
-                        </header>
-                        <section className='chat-chats-grid'>
-
-                        </section>
-                    </aside>
+                    <AsideChat />
                 </section>
             </section>
         </main>
