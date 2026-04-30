@@ -1,5 +1,3 @@
-// src/services/chatService.js
-
 const API_BASE = 'https://api-totvs-context.vercel.app/api/chat/chat'
 
 function buildHeaders(isJSON = true) {
@@ -8,9 +6,40 @@ function buildHeaders(isJSON = true) {
     : undefined
 }
 
-/**
- * Streaming SSE via fetch
- */
+
+const _cache = {
+  list: new Map(),
+  get: new Map(),
+}
+
+const TTL = 1000 * 60 // 1 minuto
+
+function isFresh(entry) {
+  return entry && (Date.now() - entry.timestamp < TTL)
+}
+
+function setCache(map, key, data) {
+  map.set(key, {
+    data,
+    timestamp: Date.now()
+  })
+}
+
+function getCache(map, key) {
+  const entry = map.get(key)
+  if (isFresh(entry)) return entry.data
+  return null
+}
+
+function invalidateList() {
+  _cache.list.clear()
+}
+
+function invalidateChat(id) {
+  _cache.get.delete(id)
+}
+
+
 export async function sendMessageStream({
   message,
   chatId,
@@ -77,6 +106,9 @@ export async function sendMessageStream({
       const payload = line.slice(6).trim()
 
       if (payload === '[DONE]') {
+        invalidateList()
+        if (chatIdFromHeader) invalidateChat(chatIdFromHeader)
+
         onEvent({ type: 'done', chatId: chatIdFromHeader })
         return
       }
@@ -95,23 +127,42 @@ export async function sendMessageStream({
   }
 }
 
-// CRUD
 
 export const ChatService = {
   async list(page = 1, pageSize = 20) {
+    const key = `${page}-${pageSize}`
+
+    const cached = getCache(_cache.list, key)
+    if (cached) return cached
+
     const res = await fetch(`${API_BASE}?action=list&page=${page}&page_size=${pageSize}`, {
       credentials: 'include',
     })
+
     if (!res.ok) throw new Error('Erro ao listar chats')
-    return res.json()
+
+    const data = await res.json()
+
+    setCache(_cache.list, key, data)
+
+    return data
   },
 
   async get(id) {
+    const cached = getCache(_cache.get, id)
+    if (cached) return cached
+
     const res = await fetch(`${API_BASE}?action=get&id=${id}`, {
       credentials: 'include',
     })
+
     if (!res.ok) throw new Error('Erro ao buscar chat')
-    return res.json()
+
+    const data = await res.json()
+
+    setCache(_cache.get, id, data)
+
+    return data
   },
 
   async updateTitle(id, title) {
@@ -121,8 +172,15 @@ export const ChatService = {
       credentials: 'include',
       body: JSON.stringify({ id, title }),
     })
+
     if (!res.ok) throw new Error('Erro ao atualizar título')
-    return res.json()
+
+    const data = await res.json()
+
+    invalidateList()
+    invalidateChat(id)
+
+    return data
   },
 
   async delete(id) {
@@ -130,7 +188,14 @@ export const ChatService = {
       method: 'DELETE',
       credentials: 'include',
     })
+
     if (!res.ok) throw new Error('Erro ao deletar chat')
-    return res.json()
+
+    const data = await res.json()
+
+    invalidateList()
+    invalidateChat(id)
+
+    return data
   },
 }
