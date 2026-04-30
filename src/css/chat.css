@@ -51,7 +51,7 @@
     gap: 5px;
 }
 
-.chat-aside-header div button {
+.chat-aside-header button {
     display: flex;
     border: none;
     padding: 3px;
@@ -127,4 +127,17 @@
 .chat-card.active {
     color: var(--black);
     background: #f7f7f7;
+}
+
+.chat-aside-loading {
+    padding: 5px 10px;
+    font-size: 0.8rem;
+    color: #4f4f4f;
+}
+
+.chat-nochats {
+    margin-top: 20px;
+    font-size: 0.8rem;
+    text-align: center;
+    color: #4f4f4f;
 }
