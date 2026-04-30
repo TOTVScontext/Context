@@ -6,6 +6,7 @@ import { ConsoleBanner } from "./hooks/ConsoleBanner"
 import ProtectedRoute from "./routes/ProtectedRoute"
 import Chat from "./routes/Chat"
 import NewChat from "./components/chat/NewChat"
+import ActiveChat from "./components/chat/ActiveChat"
 
 function App() {
 
@@ -22,7 +23,7 @@ function App() {
           <Route path='/chat' element={<Chat />} >
             <Route index element={<Navigate to='new' />} />
             <Route path='new' element={<NewChat />} />
-
+            <Route path=':id' element={<ActiveChat />} />
           </Route>
         </Route>
       </Routes>
