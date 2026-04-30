@@ -168,6 +168,7 @@ const AsideChat = () => {
               {isEditing ? (
                 <input
                   autoFocus
+                  maxLength={27}
                   value={editingValue}
                   onChange={(e) => setEditingValue(e.target.value)}
                   onBlur={() => confirmEditing(chat.id)}
