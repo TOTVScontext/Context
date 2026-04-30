@@ -5,6 +5,7 @@ import ChangeIcon from './hooks/ChangeIcon'
 import { ConsoleBanner } from "./hooks/ConsoleBanner"
 import ProtectedRoute from "./routes/ProtectedRoute"
 import Chat from "./routes/Chat"
+import NewChat from "./components/chat/NewChat"
 
 function App() {
 
@@ -18,7 +19,11 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route element={<ProtectedRoute />}>
           <Route path='/home' element={<Home />} />
-          <Route path='/chat' element={<Chat />} />
+          <Route path='/chat' element={<Chat />} >
+            <Route index element={<Navigate to='new' />} />
+            <Route path='new' element={<NewChat />} />
+
+          </Route>
         </Route>
       </Routes>
     </BrowserRouter>
