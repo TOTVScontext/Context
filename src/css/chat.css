@@ -8,11 +8,36 @@
 
 .chat-active {
     display: flex;
+    align-items: center;
+    justify-content: center;
     width: 100%;
     border: 1px solid var(--border-color);
     background: var(--light-color);
     border-radius: 20px;
 }
+
+
+/* new chat */
+.new-chat-welcome {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.new-chat-welcome img {
+    display: flex;
+    width: 40px;
+    height: fit-content;
+}
+
+.new-chat-welcome h1 {
+    font-family: "Libre Baskerville", serif;
+    font-size: 2.7rem;
+    font-weight: 400;
+}
+
+
+
 
 .chat-aside {
     display: flex;
