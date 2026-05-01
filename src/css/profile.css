@@ -1,0 +1,79 @@
+.profile-content {
+    margin-top: 15px;
+    display: flex;
+    width: 100%;
+    max-height: 78vh;
+    gap: 15px;
+}
+
+.profile-analysis {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    background: var(--light-color);
+}
+
+.profile-card {
+    display: flex;
+    flex-direction: column;
+    width: 350px;
+    height: 100%;
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    background: var(--light-color);
+    overflow: hidden;
+}
+
+.profile-card-banner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 120px;
+    overflow: hidden;
+}
+
+.profile-card-banner img {
+    display: flex;
+    width: 100%;
+    height: fit-content;
+}
+
+.profile-card-info {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.profile-card-info img {
+    margin-top: -80px;
+    display: flex;
+    width: 140px;
+    height: 140px;
+    border: 4px solid var(--light-color);
+    border-radius: 50%;
+}
+
+.profile-card-info-content {
+    display: flex;
+    padding: 10px;
+}
+
+.profile-card-info-content div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-card-info-content div h1 {
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+
+.profile-card-info-content div h2 {
+    margin-top: -5px;
+    font-size: 0.9rem;
+    font-weight: 300;
+}
