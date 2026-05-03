@@ -154,6 +154,8 @@
     color: #676767;
 }
 
+
+/* aside chat */
 .chat-aside {
     display: flex;
     flex-direction: column;
