@@ -1,48 +1,56 @@
-import { Link, NavLink, useNavigate } from 'react-router-dom'
-import { useUser } from "../hooks/useUser";
-import { logout } from '../services/auth'
-import { Aperture, Archive, BarChart2, Calendar, Grid, HelpCircle, LogOut, Settings, Users } from "@geist-ui/icons"
+import { Link, NavLink } from 'react-router-dom'
+import { Aperture, Archive, BarChart2, Calendar, Code, Grid, HelpCircle, Home, LogOut, Settings, Sidebar, TrendingUp, Users } from "@geist-ui/icons"
+import logo from '../assets/svg/logo-context.svg'
+import { useUser } from '../hooks/useUser'
 
 
 const Aside = () => {
 
     const { user } = useUser();
 
-    const navigate = useNavigate()
-
-    const handleLogout = async (e) => {
-        e.preventDefault()
-
-        try {
-            await logout()
-            window.location.reload()
-            navigate('/login', { replace: true })
-        } catch (err) {
-            console.error('Logout failed', err)
-        }
+    const FirstName = () => {
+        return user?.profile?.name
+            .trim()
+            .split(/\s+/)
+            .filter(Boolean)[0] || '';
     }
 
     return (
         <aside className="aside-main">
-            <section className="aside-nav">
-                <nav>
-                    <ul>
-                        <NavLink to='/home'><Grid size={18} /></NavLink>
-                        <NavLink to='/'><Archive size={18} /></NavLink>
-                        <NavLink to='/'><BarChart2 size={18} /></NavLink>
-                        <NavLink to='/chat'><Aperture size={18} /></NavLink>
-                        <NavLink to='/'><Users size={18} /></NavLink>
-                        <NavLink to='/'><Calendar size={18} /></NavLink>
-                    </ul>
-                </nav>
+            <header className='aside-header'>
+                <img src={logo} alt="TOTVScontext" />
+                <button><Sidebar size={15} /></button>
+            </header>
+            <section className='aside-nav'>
                 <div>
-                    <Link to=''><Settings size={18} /></Link>
-                    <Link to=''><HelpCircle size={18} /></Link>
+                    <nav>
+                        <ul>
+                            <NavLink to='/home'><Home size={15} />Home</NavLink>
+                            <NavLink to='/analysis'><Archive size={15} />Análises</NavLink>
+                            <NavLink to='/deshboard'><TrendingUp size={15} />Painel geral</NavLink>
+                        </ul>
+                    </nav>
+                    <nav>
+                        <ul>
+                            <NavLink to='/chat'><Aperture size={15} />Context AI</NavLink>
+                        </ul>
+                    </nav>
+                    <nav>
+                        <ul>
+                            <NavLink to='/chat'><Settings size={15} />Configurações</NavLink>
+                        </ul>
+                    </nav>
                 </div>
-            </section>
-            <section className='aside-profile'>
-                <button onClick={handleLogout}><LogOut size={18} /></button>
-                <Link to='/profile'><img src={user?.profile?.photo} /></Link>
+                <div className='aside-nav-profile'>
+                    <section>
+                        <img src={user?.profile?.photo} />
+                        <div>
+                            <h1>{FirstName()}</h1>
+                            <h2>{user?.profile?.position}</h2>
+                        </div>
+                    </section>
+                    <button><LogOut size={16} /></button>
+                </div>
             </section>
         </aside>
     )
