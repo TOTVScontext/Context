@@ -273,20 +273,21 @@ body {
   border-top: 1px solid var(--border-color);
 }
 
-.aside-nav-profile section {
+.aside-nav-profile a {
   display: flex;
   align-items: center;
   gap: 15px;
+  color: #000;
 }
 
-.aside-nav-profile section img {
+.aside-nav-profile a img {
   display: flex;
   width: 25px;
   height: 25px;
   border-radius: 3px;
 }
 
-.aside-nav-profile section div h1 {
+.aside-nav-profile a div h1 {
   max-width: 100px;
   white-space: nowrap;
   overflow: hidden;
@@ -294,7 +295,7 @@ body {
   font-weight: 500;
 }
 
-.aside-nav-profile section div h2 {
+.aside-nav-profile a div h2 {
   margin-top: -3px;
   max-width: 100px;
   white-space: nowrap;

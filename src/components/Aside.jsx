@@ -1,7 +1,8 @@
-import { Link, NavLink } from 'react-router-dom'
-import { Aperture, Archive, BarChart2, Calendar, Code, Grid, HelpCircle, Home, LogOut, Settings, Sidebar, TrendingUp, Users } from "@geist-ui/icons"
-import logo from '../assets/svg/logo-context.svg'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { useUser } from '../hooks/useUser'
+import { logout } from '../services/auth'
+import logo from '../assets/svg/logo-context.svg'
+import { Aperture, Archive, BarChart2, Calendar, Code, Grid, HelpCircle, Home, LogOut, Settings, Sidebar, TrendingUp, Users } from "@geist-ui/icons"
 
 
 const Aside = () => {
@@ -13,6 +14,20 @@ const Aside = () => {
             .trim()
             .split(/\s+/)
             .filter(Boolean)[0] || '';
+    }
+
+    const navigate = useNavigate()
+
+    const handleLogout = async (e) => {
+        e.preventDefault()
+
+        try {
+            await logout()
+            window.location.reload()
+            navigate('/login', { replace: true })
+        } catch (err) {
+            console.error('Logout failed', err)
+        }
     }
 
     return (
@@ -42,14 +57,14 @@ const Aside = () => {
                     </nav>
                 </div>
                 <div className='aside-nav-profile'>
-                    <section>
+                    <Link to=''>
                         <img src={user?.profile?.photo} />
                         <div>
                             <h1>{FirstName()}</h1>
                             <h2>{user?.profile?.position}</h2>
                         </div>
-                    </section>
-                    <button><LogOut size={16} /></button>
+                    </Link>
+                    <button onClick={handleLogout}><LogOut size={16} /></button>
                 </div>
             </section>
         </aside>
