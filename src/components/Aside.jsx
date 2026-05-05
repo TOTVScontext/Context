@@ -34,10 +34,9 @@ const Aside = () => {
         <aside className="aside-main">
             <header className='aside-header'>
                 <img src={logo} alt="TOTVScontext" />
-                <button><Sidebar size={15} /></button>
             </header>
             <section className='aside-nav'>
-                <div>
+                <div className='aside-nav-scrool'>
                     <nav>
                         <ul>
                             <NavLink to='/home'><Home size={15} />Home</NavLink>
