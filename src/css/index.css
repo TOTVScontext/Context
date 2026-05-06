@@ -33,6 +33,7 @@ body {
   width: 100vw;
   overflow-x: hidden;
   background: var(--background);
+  overflow: hidden;
 }
 
 /* rgb */
@@ -88,7 +89,9 @@ body {
 /* content */
 .content-main {
   display: flex;
+  flex-direction: column;
   width: 100%;
+  height: 100vh;
 }
 
 /* Header */
@@ -98,9 +101,11 @@ body {
   justify-content: space-between;
   width: 100%;
   height: 53px;
+  min-height: 53px;
   padding: 10px 20px;
   padding-left: 0;
   border-bottom: 1px solid var(--border-color);
+  z-index: 5;
 }
 
 .header-left {
@@ -134,9 +139,13 @@ body {
   padding: 0 15px;
   height: 30px;
   gap: 5px;
-  border: 1px solid #b6b6b6;
+  border: 1px solid var(--gray-color-3);
   border-radius: 4px;
   transition: var(--transition-2s);
+}
+
+.header-search:hover {
+  border-color: #999999;
 }
 
 .header-search input {
@@ -150,10 +159,6 @@ body {
 
 .header-search input::placeholder {
   color: var(--gray-color-3);
-}
-
-.header-search:hover {
-  border-color: #999999;
 }
 
 .header-search button {
@@ -172,7 +177,8 @@ body {
 .header-right {
   display: flex;
   align-items: center;
-  gap: 60px;
+  justify-content: space-between;
+  width: 200px;
 }
 
 .header-right a {
@@ -202,11 +208,12 @@ body {
 .aside-main {
   display: flex;
   flex-direction: column;
-  width: 200px;
+  width: 250px;
   height: 100vh;
   border-right: 1px solid var(--border-color);
   background: #f8f8f8;
   overflow-x: hidden;
+  z-index: 5;
 }
 
 .aside-header {
@@ -304,7 +311,7 @@ body {
 }
 
 .aside-nav-profile a div h1 {
-  width: 90px;
+  width: 110px;
   white-space: nowrap;
   overflow: hidden;
   font-size: 0.75rem;
@@ -313,7 +320,7 @@ body {
 
 .aside-nav-profile a div h2 {
   margin-top: -3px;
-  width: 90px;
+  width: 110px;
   white-space: nowrap;
   overflow: hidden;
   font-size: 0.6rem;

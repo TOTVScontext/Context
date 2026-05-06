@@ -8,9 +8,9 @@ import { Outlet } from 'react-router-dom'
 const Chat = () => {
     return (
         <main className="chat-main">
-            <Header />
+            <Aside />
             <section className="content-main">
-                <Aside />
+                <Header />
                 <section className="chat-content">
                     <section className='chat-active'>
                         <Outlet />

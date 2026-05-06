@@ -14,7 +14,7 @@ function getExt(name = '') {
   return name.split('.').pop().toLowerCase()
 }
 
-const BarChat = ({ onSend, onStop, isLoading }) => {
+const BarChat = ({ onSend, onStop, isLoading, active }) => {
   const textareaRef = useRef(null)
   const fileInputRef = useRef(null)
   const [value, setValue] = useState('')
@@ -81,7 +81,7 @@ const BarChat = ({ onSend, onStop, isLoading }) => {
   const canSend = value.trim().length > 0 && !isLoading
 
   return (
-    <main className="bar-chat-main">
+    <main className={`bar-chat-main ${active ? 'active' : ''}`}>
       {files.length > 0 && (
         <div className="bar-chat-chips">
           {files.map((f, i) => (
@@ -105,7 +105,7 @@ const BarChat = ({ onSend, onStop, isLoading }) => {
 
       <textarea
         ref={textareaRef}
-        className="bar-chat-textarea"
+        className={`bar-chat-textarea ${active ? 'active' : ''}`}
         placeholder="Como posso ajudar você hoje?"
         rows={1}
         value={value}

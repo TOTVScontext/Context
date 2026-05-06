@@ -51,19 +51,19 @@ const Aside = () => {
                     </nav>
                     <nav>
                         <ul>
-                            <NavLink to='/chat'><Settings size={15} />Configurações</NavLink>
+                            <NavLink to='/settings'><Settings size={15} />Configurações</NavLink>
                         </ul>
                     </nav>
                 </div>
                 <div className='aside-nav-profile'>
-                    <Link to=''>
+                    <Link to='/profile'>
                         <img src={user?.profile?.photo} />
                         <div>
                             <h1>{FirstName()}</h1>
                             <h2>{user?.profile?.position}</h2>
                         </div>
                     </Link>
-                    <button onClick={handleLogout}><LogOut size={16} /></button>
+                    <button onClick={handleLogout}><LogOut size={15} /></button>
                 </div>
             </section>
         </aside>

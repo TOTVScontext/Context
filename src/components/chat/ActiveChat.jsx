@@ -119,7 +119,7 @@ const ActiveChat = () => {
       </section>
 
       <section className="active-chat-input">
-        <BarChat onSend={handleSend} onStop={handleStop} isLoading={isLoading} />
+        <BarChat onSend={handleSend} onStop={handleStop} isLoading={isLoading} active />
       </section>
     </main>
   )

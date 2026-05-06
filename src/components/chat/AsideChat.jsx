@@ -136,7 +136,7 @@ const AsideChat = () => {
       <header className="chat-aside-header">
         <div>
           <h1>Meus Chats</h1>
-          <MessageSquare size={15} />
+          <MessageSquare size={14} />
         </div>
 
         <button onClick={handleNewChat} title="Novo chat">
@@ -203,10 +203,10 @@ const AsideChat = () => {
                 ) : (
                   <>
                     <button onClick={() => startDeleting(chat.id)}>
-                      <Trash2 size={16} />
+                      <Trash2 size={15} />
                     </button>
                     <button onClick={() => startEditing(chat)}>
-                      <Edit size={16} />
+                      <Edit size={15} />
                     </button>
                   </>
                 )}
