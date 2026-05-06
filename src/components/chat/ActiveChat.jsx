@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { useChat } from '../../hooks/useChat'
 import BarChat from './BarChat'
 import { ChatService } from '../../services/chatService'
+import { AlertTriangle } from '@geist-ui/icons'
 
 
 const ThinkingIndicator = () => (
@@ -111,7 +112,7 @@ const ActiveChat = () => {
 
         {error && (
           <div className="chat-error" role="alert">
-            <p>{error}</p>
+            <p><AlertTriangle size={15}/> {error}</p>
           </div>
         )}
 

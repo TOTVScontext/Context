@@ -307,7 +307,7 @@
     border-radius: 10px;
     background: #f4f4f4;
     color: #373737;
-    font-size: 14.5px;
+    font-size: 0.8rem;
     line-height: 1.5;
     white-space: pre-wrap;
     word-break: break-word;
@@ -320,7 +320,7 @@
 
 .chat-bubble--ai {
     color: var(--black);
-    font-size: 0.9rem;
+    font-size: 0.83rem;
     white-space: pre-wrap;
     word-break: break-word;
 }
@@ -386,11 +386,17 @@
 }
 
 .chat-error {
+    display: flex;
     background: #fee2e2;
-    color: #991b1b;
     padding: 12px 16px;
     border-radius: 12px;
-    font-size: 14px;
-    max-width: 70%;
     border: 1px solid #fecaca;
+}
+
+.chat-error p {
+    display: flex;
+    align-items: center;
+    font-size: 0.83rem;
+    color: #991b1b;
+    gap: 7px;
 }
