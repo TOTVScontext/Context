@@ -2,7 +2,7 @@ import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { useUser } from '../hooks/useUser'
 import { logout } from '../services/auth'
 import logo from '../assets/svg/logo-context.svg'
-import { Aperture, Archive, Code, Home, LogOut, Settings, TrendingUp } from "@geist-ui/icons"
+import { Aperture, Archive, BookOpen, Calendar, Code, Grid, Home, LogOut, Settings, TrendingUp } from "@geist-ui/icons"
 
 
 const Aside = () => {
@@ -42,6 +42,8 @@ const Aside = () => {
                             <NavLink to='/home'><Home size={15} />Home</NavLink>
                             <NavLink to='/analysis'><Archive size={15} />Análises</NavLink>
                             <NavLink to='/deshboard'><TrendingUp size={15} />Painel geral</NavLink>
+                            <NavLink to='/course'><BookOpen size={15} />Cursos</NavLink>
+                            <NavLink to='/calendar'><Calendar size={15} />Agenda</NavLink>
                         </ul>
                     </nav>
                     <nav>
@@ -51,6 +53,7 @@ const Aside = () => {
                     </nav>
                     <nav>
                         <ul>
+                            <NavLink to='/integration'><Grid size={15} />Integrações</NavLink>
                             <NavLink to='/settings'><Settings size={15} />Configurações</NavLink>
                         </ul>
                     </nav>
