@@ -2,7 +2,7 @@ import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { useUser } from '../hooks/useUser'
 import { logout } from '../services/auth'
 import logo from '../assets/svg/logo-context.svg'
-import { Aperture, Archive, BarChart2, Calendar, Code, Grid, HelpCircle, Home, LogOut, Settings, Sidebar, TrendingUp, Users } from "@geist-ui/icons"
+import { Aperture, Archive, Code, Home, LogOut, Settings, TrendingUp } from "@geist-ui/icons"
 
 
 const Aside = () => {

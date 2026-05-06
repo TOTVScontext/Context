@@ -10,14 +10,14 @@ const NewChat = () => {
     const { user } = useUser()
 
     const getFirstName = () => {
-        return user?.profile?.name
+        return (user?.profile?.name || '')
             .trim()
             .split(/\s+/)
             .filter(Boolean)[0] || '';
     }
 
     function getLastName() {
-        const partes = user?.profile?.name
+        const partes = (user?.profile?.name || '')
             .trim()
             .split(/\s+/)
             .filter(Boolean);

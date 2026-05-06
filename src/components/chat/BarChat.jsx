@@ -106,13 +106,12 @@ const BarChat = ({ onSend, onStop, isLoading, active }) => {
       <textarea
         ref={textareaRef}
         className={`bar-chat-textarea ${active ? 'active' : ''}`}
-        placeholder="Como posso ajudar você hoje?"
+        placeholder={isLoading ? "Pensando..." : "Como posso ajudar você hoje?"}
         rows={1}
         value={value}
         disabled={isLoading}
         onChange={e => setValue(e.target.value)}
         onKeyDown={handleKeyDown}
-        aria-label="Mensagem para a IA"
       />
 
       <section className="bar-chat-btns">
