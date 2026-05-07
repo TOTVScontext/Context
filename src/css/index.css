@@ -172,6 +172,7 @@ body {
 
 .header-search button:hover {
   color: #808080;
+  background: transparent;
 }
 
 .header-right {
