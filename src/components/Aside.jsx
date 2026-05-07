@@ -44,31 +44,33 @@ const Aside = () => {
     return (
         <aside className={`aside-main ${collapsed ? 'collapsed' : ''}`}>
             <header className='aside-header'>
-                <img src={logo} alt="TOTVScontext" />
+                <Link to='/home'>
+                    <img src={logo} alt="TOTVScontext" />
+                </Link>
             </header>
 
             <section className='aside-nav'>
                 <div className='aside-nav-scrool'>
                     <nav>
                         <ul>
-                            <NavLink to='/home'><Home size={15} />Home</NavLink>
-                            <NavLink to='/analysis'><Archive size={15} />Análises</NavLink>
-                            <NavLink to='/deshboard'><TrendingUp size={15} />Painel geral</NavLink>
-                            <NavLink to='/course'><BookOpen size={15} />Cursos</NavLink>
-                            <NavLink to='/calendar'><Calendar size={15} />Agenda</NavLink>
+                            <NavLink to='/home' title='Início'><Home size={15} /><span>Início</span></NavLink>
+                            <NavLink to='/analysis' title='Análises'><Archive size={15} /><span>Análises</span></NavLink>
+                            <NavLink to='/deshboard' title='Painel geral'><TrendingUp size={15} /><span>Painel geral</span></NavLink>
+                            <NavLink to='/course' title='Cursos'><BookOpen size={15} /><span>Cursos</span></NavLink>
+                            <NavLink to='/calendar' title='Agenda'><Calendar size={15} /><span>Agenda</span></NavLink>
                         </ul>
                     </nav>
 
                     <nav>
                         <ul>
-                            <NavLink to='/chat'><Aperture size={15} />Context AI</NavLink>
+                            <NavLink to='/chat' title='Context AI'><Aperture size={15} /><span>Context AI</span></NavLink>
                         </ul>
                     </nav>
 
                     <nav>
                         <ul>
-                            <NavLink to='/integration'><Grid size={15} />Integrações</NavLink>
-                            <NavLink to='/settings'><Settings size={15} />Configurações</NavLink>
+                            <NavLink to='/integration' title='Integrações'><Grid size={15} /><span>Integrações</span></NavLink>
+                            <NavLink to='/settings' title='Configurações'><Settings size={15} /><span>Configurações</span></NavLink>
                         </ul>
                     </nav>
                 </div>

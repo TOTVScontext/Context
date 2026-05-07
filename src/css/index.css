@@ -189,7 +189,7 @@ body {
   color: var(--gray-color-2);
   transition: var(--transition-2s);
 }
-  
+
 .header-right a:hover {
   color: var(--black);
 }
@@ -214,7 +214,7 @@ body {
   background: #f8f8f8;
   overflow-x: hidden;
   z-index: 5;
-  transition: var(--transition-3s);
+  transition: all 0.25s ease;
 }
 
 .aside-main.collapsed {
@@ -228,12 +228,17 @@ body {
   height: 53px;
   padding: 15px;
   border-bottom: 1px solid var(--border-color);
+  transition: var(--transition-2s);
 }
 
 .aside-header img {
   display: flex;
   width: 100px;
   filter: invert(1);
+}
+
+.aside-main.collapsed .aside-header {
+  padding: 15px 13px;
 }
 
 .aside-nav {
@@ -280,6 +285,28 @@ body {
   gap: 16px;
   border-radius: 4px;
   color: var(--gray-color-2);
+  white-space: nowrap;
+  overflow: hidden;
+  transition: var(--transition-2s);
+}
+
+.aside-nav nav ul a span {
+  opacity: 1;
+  transition: var(--transition-3s);
+}
+
+.aside-main.collapsed .aside-nav nav ul a {
+  padding: 5px 6px;
+}
+
+.aside-main.collapsed .aside-nav nav ul a span {
+  opacity: 0;
+}
+
+.aside-main.collapsed .aside-nav nav ul a svg {
+  min-width: 15px;
+  width: 15px;
+  height: 15px;
 }
 
 .aside-nav nav ul a.active {
@@ -291,7 +318,6 @@ body {
   background: #e9e9e9;
   color: #1f1f1f;
 }
-
 
 .aside-nav-profile {
   display: flex;
@@ -306,6 +332,7 @@ body {
   align-items: center;
   gap: 15px;
   color: #000;
+  overflow: hidden;
 }
 
 .aside-nav-profile a img {
@@ -313,6 +340,15 @@ body {
   width: 25px;
   height: 25px;
   border-radius: 3px;
+}
+
+.aside-nav-profile a div {
+  opacity: 1;
+  transition: var(--transition-2s);
+}
+
+.aside-main.collapsed .aside-nav-profile a div {
+  opacity: 0;
 }
 
 .aside-nav-profile a div h1 {
@@ -344,6 +380,10 @@ body {
   background: transparent;
   transition: var(--transition-2s);
   cursor: pointer;
+}
+
+.aside-main.collapsed .aside-nav-profile button {
+  display: none;
 }
 
 .aside-nav-profile button:hover {
