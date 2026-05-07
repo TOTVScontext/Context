@@ -31,7 +31,7 @@ const Header = () => {
             <section className="header-right">
                 <Link to=''><HelpCircle size={15} />Ajuda</Link>
 
-                <Link className='active' to='https://github.com/TOTVScontext/Context-CLI/archive/refs/heads/main.zip'>
+                <Link className='active'>
                     <Terminal size={15} />
                     Context CLI
                 </Link>
