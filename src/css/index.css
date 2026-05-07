@@ -214,6 +214,11 @@ body {
   background: #f8f8f8;
   overflow-x: hidden;
   z-index: 5;
+  transition: var(--transition-3s);
+}
+
+.aside-main.collapsed {
+  width: 50px;
 }
 
 .aside-header {
