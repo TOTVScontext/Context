@@ -6,18 +6,18 @@ const Welcome = () => {
     return (
         <main className='welcome-main'>
             <header className='welcome-header'>
-                <img src={logo} alt="TOTVS context" />
+                <img onClick={() => window.location.reload()} src={logo} alt="TOTVS context" />
                 <nav>
                     <ul>
-                        <Link>Sobre</Link>
-                        <Link>TOTVS</Link>
-                        <Link>Planos</Link>
-                        <Link>Suporte</Link>
+                        <Link to='#about'>Sobre</Link>
+                        <Link to='#totvs'>TOTVS</Link>
+                        <Link to='#plans'>Planos</Link>
+                        <Link to='#support'>Suporte</Link>
                     </ul>
                 </nav>
                 <div>
-                    <Link>Registrar</Link>
-                    <Link className='active'>Entrar</Link>
+                    <Link to='/login?view=register'>Registrar</Link>
+                    <Link to='/login?view=login' className='active'>Entrar</Link>
                 </div>
             </header>
 

@@ -21,6 +21,7 @@
     display: flex;
     width: 110px;
     filter: invert(1);
+    cursor: pointer;
 }
 
 .welcome-header nav ul {
@@ -29,7 +30,7 @@
 
 .welcome-header nav ul a {
     font-size: 0.8rem;
-    padding: 2px 7px;
+    padding: 3px 9px;
     border-radius: 4px;
     color: var(--gray-color-2);
     transition: var(--transition-2s);
