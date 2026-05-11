@@ -42,6 +42,7 @@ const Login = () => {
                 await register(form.name, form.email, form.password)
                 navigate('?view=login', { replace: true })
             }
+            localStorage.setItem("first_login", 'false')
         } catch (err) {
             setError(err.message)
         } finally {

@@ -1,0 +1,67 @@
+.welcome-main {
+    display: flex;
+    flex-direction: column;
+}
+
+.welcome-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #ffffffdd;
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    width: 100vw;
+    padding: 15px 20px;
+    justify-content: space-between;
+    border-bottom: 1px solid #fff;
+}
+
+.welcome-header img {
+    display: flex;
+    width: 110px;
+    filter: invert(1);
+}
+
+.welcome-header nav ul {
+    display: flex;
+}
+
+.welcome-header nav ul a {
+    font-size: 0.8rem;
+    padding: 2px 7px;
+    border-radius: 4px;
+    color: var(--gray-color-2);
+    transition: var(--transition-2s);
+}
+
+.welcome-header nav ul a:hover {
+    background: #eeeeee;
+    color: var(--black);
+}
+
+.welcome-header div {
+    display: flex;
+}
+
+.welcome-header div a {
+    font-size: 0.8rem;
+    padding: 3px 9px;
+    color: var(--gray-color-2);
+    transition: var(--transition-2s);
+}
+
+.welcome-header div a:hover {
+    color: var(--black);
+}
+
+.welcome-header div a.active {
+    border: 1px solid var(--black);
+    border-radius: 4px;
+    color: var(--black);
+}
+
+.welcome-header div a.active:hover {
+    background: var(--black);
+    color: var(--light-color);
+}
