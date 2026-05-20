@@ -3,7 +3,7 @@
     justify-content: center;
     width: 100vw;
     height: 100vh;
-    background-image: url('../assets/img/background.jpg');
+    background-image: url('/assets/img/background.jpg');
     background-size: cover;
     overflow: hidden;
 }
