@@ -653,7 +653,6 @@
     color: var(--light-color);
 }
 
-/* ─── CTA ─── */
 .welcome-cta {
     width: 95%;
     max-width: 1200px;
@@ -723,7 +722,6 @@
     background: rgba(255, 255, 255, .08);
 }
 
-/* ─── FOOTER ─── */
 .welcome-footer {
     width: 95%;
     max-width: 1200px;
@@ -754,4 +752,256 @@
 
 .welcome-footer-right a:hover {
     color: var(--black);
+}
+
+
+
+@media (max-width: 780px) {
+
+
+    .welcome-header {
+        width: 100%;
+        padding: 14px 20px;
+        box-sizing: border-box;
+    }
+
+    .welcome-header nav {
+        display: none;
+    }
+
+    .welcome-header img {
+        width: 90px;
+    }
+
+    .welcome-content {
+        width: 100%;
+        padding: 0 20px;
+    }
+
+
+
+    .welcome-presentation {
+        flex-direction: column-reverse;
+        height: auto;
+        align-items: center;
+        padding: 80px 0 50px;
+        gap: 30px;
+    }
+
+    .welcome-presentation-left {
+        width: 100%;
+    }
+
+    .welcome-presentation-left h1 {
+        font-size: 1.75rem;
+        line-height: 1.25;
+    }
+
+    .welcome-presentation-left p {
+        width: 100%;
+        font-size: 0.8rem;
+    }
+
+    .welcome-presentation-left div {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .welcome-presentation-right {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .welcome-presentation-right img {
+        width: 80%;
+    }
+
+
+
+    .welcome-cli {
+        width: 100%;
+        padding: 50px 0;
+    }
+
+    .welcome-about-cli {
+        flex-direction: column;
+        gap: 32px;
+    }
+
+    .welcome-about-cli-left,
+    .welcome-about-cli-right {
+        width: 100%;
+    }
+
+    .welcome-about-cli-left h2 {
+        font-size: 1.5rem;
+    }
+
+
+
+    .welcome-numbers-section {
+        width: 100%;
+        padding: 50px 0 0;
+    }
+
+    .welcome-numbers {
+        grid-template-columns: 1fr;
+        border-radius: 8px;
+    }
+
+    .welcome-numbers-item {
+        padding: 28px 24px;
+        border-bottom: 1px solid #eeeeee;
+    }
+
+    .welcome-numbers-item:last-child {
+        border-bottom: none;
+    }
+
+    .welcome-numbers-item-value {
+        font-size: 2rem;
+    }
+
+
+
+    .welcome-how {
+        width: 100%;
+        padding: 50px 0;
+    }
+
+    .welcome-how-inner {
+        flex-direction: column;
+        gap: 36px;
+    }
+
+    .welcome-how-left,
+    .welcome-how-right {
+        width: 100%;
+    }
+
+    .welcome-how-left h2 {
+        font-size: 1.5rem;
+    }
+
+
+
+    .welcome-problem-section {
+        width: 100%;
+        padding: 0 0 50px;
+    }
+
+    .welcome-problem {
+        flex-direction: column;
+        padding: 32px 24px;
+        gap: 28px;
+        border-radius: 10px;
+    }
+
+    .welcome-problem-left,
+    .welcome-problem-right {
+        width: 100%;
+    }
+
+    .welcome-problem-left h2 {
+        font-size: 1.4rem;
+    }
+
+
+
+    .welcome-totvs {
+        width: 100%;
+        padding: 50px 0;
+    }
+
+    .welcome-totvs-inner {
+        flex-direction: column;
+        gap: 36px;
+    }
+
+    .welcome-totvs-left,
+    .welcome-totvs-right {
+        width: 100%;
+    }
+
+    .welcome-totvs-left h2 {
+        font-size: 1.5rem;
+    }
+
+    .welcome-totvs-stat-val {
+        min-width: 64px;
+        font-size: 1.3rem;
+    }
+
+
+
+    .welcome-plans {
+        width: 100%;
+        padding: 60px 0;
+    }
+
+    .welcome-plans>h2 {
+        font-size: 1.4rem;
+        text-align: left;
+    }
+
+    .welcome-plans>p {
+        text-align: left;
+        margin-bottom: 28px;
+    }
+
+    .welcome-plans-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .welcome-plans-card {
+        margin: 0 auto;
+        width: 80%;
+        height: 400px;
+    }
+
+
+
+    .welcome-cta {
+        width: 100%;
+        padding: 0 0 60px;
+    }
+
+    .welcome-cta-inner {
+        flex-direction: column;
+        padding: 40px 28px;
+        gap: 28px;
+        align-items: flex-start;
+        border-radius: 10px;
+    }
+
+    .welcome-cta-inner h2 {
+        font-size: 1.4rem;
+        max-width: 100%;
+    }
+
+    .welcome-cta-actions {
+        width: 100%;
+        min-width: unset;
+    }
+
+    .welcome-cta-primary,
+    .welcome-cta-secondary {
+        width: 100%;
+    }
+
+
+    
+    .welcome-footer {
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+        padding: 28px 0 40px;
+    }
+
+    .welcome-footer-right {
+        gap: 16px;
+    }
 }
