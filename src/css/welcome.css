@@ -3,7 +3,8 @@
     flex-direction: column;
     align-items: center;
     width: 100vw;
-    min-height: 100vh;
+    height: 100vh;
+    overflow-y: auto;
 }
 
 .welcome-header {
@@ -137,4 +138,494 @@
 .welcome-presentation-right img {
     display: flex;
     width: 100%;
+}
+
+
+
+.welcome-numbers-section {
+    width: 95%;
+    margin: 0 auto;
+    padding: 50px 0 0;
+}
+
+.welcome-numbers {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: #eeeeee;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.welcome-numbers-item {
+    background: #ffffff;
+    padding: 36px 32px;
+}
+
+.welcome-numbers-item-value {
+    display: flex;
+    font-size: 2.5rem;
+    font-weight: 400;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    margin-bottom: 10px;
+    gap: 5px;
+}
+
+.welcome-numbers-item-value span {
+    font-size: 1.2rem;
+    font-weight: 300;
+    color: #b5b5b5;
+}
+
+.welcome-numbers-item p {
+    font-size: 0.8rem;
+    color: #666;
+    line-height: 1.6;
+    max-width: 200px;
+}
+
+
+
+.welcome-how {
+    width: 95%;
+    margin: 0 auto;
+    padding: 80px 0;
+    border-top: 0.5px solid #eeeeee;
+}
+
+.welcome-how-inner {
+    display: flex;
+    gap: 64px;
+    align-items: flex-start;
+}
+
+.welcome-how-left {
+    width: 35%;
+}
+
+.welcome-how-left h2 {
+    font-size: 1.9rem;
+    font-weight: 400;
+    line-height: 1.25;
+    margin-bottom: 14px;
+}
+
+.welcome-how-left p {
+    font-size: 0.78rem;
+    color: #666;
+    line-height: 1.7;
+}
+
+.welcome-how-right {
+    width: 65%;
+    display: flex;
+    flex-direction: column;
+}
+
+.welcome-how-step {
+    display: flex;
+    gap: 20px;
+    padding: 20px 0;
+    border-bottom: 0.5px solid #eeeeee;
+}
+
+.welcome-how-step:first-child {
+    padding-top: 0;
+}
+
+.welcome-how-step:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.welcome-how-step-n {
+    font-size: 0.65rem;
+    font-weight: 500;
+    color: #bbb;
+    min-width: 24px;
+    padding-top: 3px;
+}
+
+.welcome-how-step-body h3 {
+    font-size: 0.88rem;
+    font-weight: 500;
+    margin-bottom: 4px;
+}
+
+.welcome-how-step-body p {
+    font-size: 0.75rem;
+    color: #666;
+    line-height: 1.6;
+}
+
+
+
+.welcome-problem-section {
+    width: 95%;
+    margin: 0 auto;
+    padding: 0 0 80px;
+}
+
+.welcome-problem {
+    background: #f7f7f7;
+    border-radius: 12px;
+    padding: 48px 40px;
+    display: flex;
+    gap: 48px;
+    align-items: center;
+}
+
+.welcome-problem-left {
+    width: 42%;
+}
+
+.welcome-problem-left h2 {
+    font-size: 1.7rem;
+    font-weight: 400;
+    line-height: 1.3;
+    margin-bottom: 12px;
+}
+
+.welcome-problem-left p {
+    font-size: 0.78rem;
+    color: #666;
+    line-height: 1.7;
+}
+
+.welcome-problem-right {
+    width: 58%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.welcome-problem-card {
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 16px 18px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+}
+
+.welcome-problem-card-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--black);
+    margin-top: 5px;
+}
+
+.welcome-problem-card h3 {
+    font-size: 0.82rem;
+    font-weight: 500;
+    margin-bottom: 3px;
+}
+
+.welcome-problem-card p {
+    font-size: 0.72rem;
+    color: #777;
+    line-height: 1.5;
+}
+
+
+
+.welcome-totvs {
+    width: 95%;
+    margin: 0 auto;
+    padding: 80px 0;
+    border-top: 0.5px solid #eeeeee;
+}
+
+.welcome-totvs-inner {
+    display: flex;
+    gap: 64px;
+    align-items: center;
+}
+
+.welcome-totvs-left {
+    width: 45%;
+}
+
+.welcome-totvs-left h2 {
+    font-size: 1.7rem;
+    font-weight: 400;
+    line-height: 1.3;
+    margin-bottom: 12px;
+}
+
+.welcome-totvs-left p {
+    font-size: 0.78rem;
+    color: #666;
+    line-height: 1.7;
+}
+
+.welcome-totvs-right {
+    width: 55%;
+    display: flex;
+    flex-direction: column;
+}
+
+.welcome-totvs-stat {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    padding: 16px 0;
+    border-bottom: 0.5px solid #eeeeee;
+}
+
+.welcome-totvs-stat:first-child {
+    padding-top: 0;
+}
+
+.welcome-totvs-stat:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.welcome-totvs-stat-val {
+    font-size: 1.5rem;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    min-width: 80px;
+}
+
+.welcome-totvs-stat-text {
+    font-size: 0.75rem;
+    color: #666;
+    line-height: 1.5;
+}
+
+
+
+.welcome-plans {
+    width: 95%;
+    margin: 0 auto;
+    padding: 80px 0;
+    border-top: 0.5px solid #eeeeee;
+}
+
+.welcome-plans>h2 {
+    font-size: 1.7rem;
+    font-weight: 400;
+    text-align: center;
+    margin-bottom: 6px;
+}
+
+.welcome-plans>p {
+    font-size: 0.78rem;
+    color: #777;
+    text-align: center;
+    margin-bottom: 36px;
+}
+
+.welcome-plans-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.welcome-plans-card {
+    border: 0.5px solid #eeeeee;
+    border-radius: 10px;
+    height: 450px;
+    padding: 28px 22px;
+    display: flex;
+    flex-direction: column;
+}
+
+.welcome-plans-card.active {
+    border: 1.5px solid var(--black);
+}
+
+.welcome-plans-card-badge {
+    display: inline-block;
+    font-size: 0.6rem;
+    font-weight: 500;
+    background: var(--black);
+    color: var(--light-color);
+    border-radius: 20px;
+    padding: 2px 10px;
+    margin-bottom: 10px;
+    align-self: flex-start;
+}
+
+.welcome-plans-card-name {
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.welcome-plans-card-price {
+    font-size: 2rem;
+    font-weight: 400;
+    letter-spacing: -0.03em;
+    margin-bottom: 6px;
+}
+
+.welcome-plans-card-price span {
+    font-size: 0.72rem;
+    color: #999;
+    font-weight: 400;
+}
+
+.welcome-plans-card>p {
+    font-size: 0.72rem;
+    color: #777;
+    line-height: 1.5;
+    margin-bottom: 16px;
+}
+
+.welcome-plans-card hr {
+    border: none;
+    border-top: 0.5px solid #eeeeee;
+    margin-bottom: 16px;
+}
+
+.welcome-plans-card-feat {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 0.72rem;
+    color: #555;
+    margin-bottom: 7px;
+}
+
+.welcome-plans-card-feat::before {
+    content: '—';
+    color: #bbb;
+    flex-shrink: 0;
+}
+
+.welcome-plans-card-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 38px;
+    font-size: 0.78rem;
+    border: 0.5px solid var(--black);
+    border-radius: 5px;
+    background: transparent;
+    cursor: pointer;
+    color: var(--black);
+    margin-top: auto;
+    padding-top: 0;
+    text-decoration: none;
+    transition: var(--transition-2s);
+}
+
+.welcome-plans-card-btn:hover {
+    background: var(--black);
+    color: var(--light-color);
+}
+
+.welcome-plans-card.active .welcome-plans-card-btn {
+    background: var(--black);
+    color: var(--light-color);
+}
+
+/* ─── CTA ─── */
+.welcome-cta {
+    width: 95%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 0 80px;
+}
+
+.welcome-cta-inner {
+    background: var(--black);
+    border-radius: 12px;
+    padding: 64px 52px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+}
+
+.welcome-cta-inner h2 {
+    font-size: 1.9rem;
+    font-weight: 400;
+    color: var(--light-color);
+    line-height: 1.3;
+    max-width: 55%;
+}
+
+.welcome-cta-inner h2 em {
+    font-style: italic;
+    color: #f5d547;
+}
+
+.welcome-cta-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 210px;
+}
+
+.welcome-cta-primary,
+.welcome-cta-secondary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    padding: 11px 24px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: var(--transition-2s);
+}
+
+.welcome-cta-primary {
+    background: #f5d547;
+    color: var(--black);
+    font-weight: 500;
+}
+
+.welcome-cta-primary:hover {
+    background: #e8c930;
+}
+
+.welcome-cta-secondary {
+    background: transparent;
+    color: var(--light-color);
+    border: 0.5px solid rgba(255, 255, 255, .25);
+}
+
+.welcome-cta-secondary:hover {
+    background: rgba(255, 255, 255, .08);
+}
+
+/* ─── FOOTER ─── */
+.welcome-footer {
+    width: 95%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 36px 0;
+    border-top: 0.5px solid #eeeeee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.welcome-footer-left p {
+    font-size: 0.7rem;
+    color: #bbb;
+}
+
+.welcome-footer-right {
+    display: flex;
+    gap: 20px;
+}
+
+.welcome-footer-right a {
+    font-size: 0.7rem;
+    color: #bbb;
+    text-decoration: none;
+    transition: var(--transition-2s);
+}
+
+.welcome-footer-right a:hover {
+    color: var(--black);
 }
