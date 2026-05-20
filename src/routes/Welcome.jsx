@@ -37,6 +37,32 @@ const Welcome = () => {
                     </article>
                 </section>
 
+                <section className='welcome-cli'>
+                    <div className='welcome-about-cli'>
+                        <article className='welcome-about-cli-left'>
+                            <span className='welcome-about-label'>Context CLI</span>
+                            <h2>Poder de análise direto no seu terminal</h2>
+                            <p>Para times técnicos e fluxos automatizados, o Context CLI permite enviar transcrições e receber insights diretamente pela linha de comando, integrável a qualquer pipeline.</p>
+                            <Link to='/cli'><Download size={18} />Baixar Context CLI</Link>
+                        </article>
+                        <div className='welcome-about-cli-right'>
+                            <div className='welcome-about-cli-terminal-bar'>
+                                <span className='welcome-about-cli-terminal-dot red'></span>
+                                <span className='welcome-about-cli-terminal-dot yellow'></span>
+                                <span className='welcome-about-cli-terminal-dot green'></span>
+                            </div>
+                            <div className='welcome-about-cli-terminal-body'>
+                                <div className='welcome-about-cli-line'><span className='prompt'>$</span><span className='cmd'>context analyze ./reuniao-vendas.txt</span></div>
+                                <div className='welcome-about-cli-line'><span className='output'>→ Processando transcrição...</span></div>
+                                <div className='welcome-about-cli-line'><span className='highlight'>✔ Análise concluída</span></div>
+                                <div className='welcome-about-cli-line'><span className='output'>Sentimento geral: </span><span className='success'>Positivo (82%)</span></div>
+                                <div className='welcome-about-cli-line'><span className='output'>Engajamento:      </span><span className='info'>Alto (91%)</span></div>
+                                <div className='welcome-about-cli-line'><span className='output'>→ Relatório salvo em ./context-report.pdf</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
                 <section className='welcome-numbers-section'>
                     <span className='welcome-about-label' style={{ textAlign: 'center', display: 'block', marginBottom: '28px' }}>
                         Resultados que gestores enxergam
