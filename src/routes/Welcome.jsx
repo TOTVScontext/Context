@@ -25,7 +25,7 @@ const Welcome = () => {
             <section className='welcome-content'>
                 <section className='welcome-presentation'>
                     <article className='welcome-presentation-left'>
-                        <h1>Toda Conversa Conta. O Context Conecta <span>Comunicação </span>e<span> Resultado.</span></h1>
+                        <h1>Toda Conversa Conta. O Context Conecta Comunicação e Resultado.</h1>
                         <p>O Context transforma conversas corporativas em métricas, insights e decisões inteligentes por meio de inteligência artificial avançada.</p>
                         <div>
                             <Link to='/login?view=login' className='active'><Chrome size={20} />Fazer LogIn</Link>
