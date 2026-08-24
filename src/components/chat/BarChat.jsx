@@ -106,7 +106,7 @@ const BarChat = ({ onSend, onStop, isLoading, active }) => {
       <textarea
         ref={textareaRef}
         className={`bar-chat-textarea ${active ? 'active' : ''}`}
-        placeholder={isLoading ? "Pensando..." : "Como posso ajudar você hoje?"}
+        placeholder={isLoading ? "Pensando..." : "Escreva uma mensagem..."}
         rows={1}
         value={value}
         disabled={isLoading}
@@ -135,7 +135,7 @@ const BarChat = ({ onSend, onStop, isLoading, active }) => {
         />
 
         <div className="bar-chat-right">
-          <p className="bar-chat-model">NVIDIA nemotron-3</p>
+          <p className="bar-chat-model">Pleroma - Graham 1.8</p>
 
           {isLoading ? (
             <button
@@ -157,6 +157,7 @@ const BarChat = ({ onSend, onStop, isLoading, active }) => {
           )}
         </div>
       </section>
+      <p className='footer'>Context é uma IA e pode cometer erros. Por favor, verifique as respostas.</p>
     </main>
   )
 }

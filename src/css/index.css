@@ -196,15 +196,6 @@ body {
   color: var(--black);
 }
 
-.header-right a.active {
-  color: var(--black);
-  font-weight: 500;
-}
-
-.header-right a.active:hover {
-  color: var(--gray-color-2);
-}
-
 
 /* Aside */
 .aside-main {
