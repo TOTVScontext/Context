@@ -3,21 +3,21 @@ import { useNavigate } from 'react-router-dom'
 import { useChat } from '../../hooks/useChat'
 import { useUser } from '../../hooks/useUser'
 import BarChat from './BarChat'
-import { AiAgentInvocation } from '@carbon/icons-react'
+import { ShapeExclude } from '@carbon/icons-react'
 
 const NewChat = () => {
     const navigate = useNavigate()
     const { user } = useUser()
 
     const getFirstName = () => {
-        return (user?.profile?.name || '')
+        return (user?.name || '')
             .trim()
             .split(/\s+/)
             .filter(Boolean)[0] || '';
     }
 
     function getLastName() {
-        const partes = (user?.profile?.name || '')
+        const partes = (user?.name || '')
             .trim()
             .split(/\s+/)
             .filter(Boolean);
@@ -62,7 +62,7 @@ const NewChat = () => {
         <main className="new-chat-main">
 
             <section className="new-chat-welcome">
-                <AiAgentInvocation size={35} className="rgb-color" />
+                <ShapeExclude size={38} color='#ffd034' />
                 <h1>Olá, {getFirstName()} {getLastName()}</h1>
             </section>
 

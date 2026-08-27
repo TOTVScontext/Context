@@ -7,7 +7,6 @@ import ProtectedRoute from "./routes/ProtectedRoute"
 import Chat from "./routes/Chat"
 import NewChat from "./components/chat/NewChat"
 import ActiveChat from "./components/chat/ActiveChat"
-import Profile from "./routes/Profile"
 import Welcome from "./routes/Welcome"
 
 function App() {
@@ -30,7 +29,6 @@ function App() {
             <Route path='new' element={<NewChat />} />
             <Route path=':id' element={<ActiveChat />} />
           </Route>
-          <Route path='/profile' element={<Profile />} />
         </Route>
       </Routes>
     </BrowserRouter>

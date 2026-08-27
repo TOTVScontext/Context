@@ -36,7 +36,9 @@ async function requestUser() {
   return {
     id: data.id,
     email: data.email,
-    profile: data.profile,
+    name: data.name,
+    photo: data.photo,
+    plan: data.plan,
     settings: data.settings,
   }
 }

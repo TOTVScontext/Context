@@ -3,7 +3,7 @@ import { useUser } from '../hooks/useUser'
 import { logout } from '../services/auth'
 import logo from '../assets/svg/logo-context.svg'
 import { useEffect, useState } from 'react'
-import { AiAgentInvocation, Aperture, Box, Calendar, Grid, Growth, Home, IbmKnowledgeCatalog, Logout, Settings } from '@carbon/icons-react'
+import { Box, Calendar, Grid, Growth, Home, IbmKnowledgeCatalog, Logout, Settings, ShapeExclude } from '@carbon/icons-react'
 
 const Aside = () => {
     const { user } = useUser()
@@ -26,7 +26,7 @@ const Aside = () => {
     }, [])
 
     const FirstName = () => {
-        return user?.profile?.name?.trim().split(/\s+/).filter(Boolean)[0] || ''
+        return user?.name?.trim().split(/\s+/).filter(Boolean)[0] || ''
     }
 
     const handleLogout = async (e) => {
@@ -63,7 +63,7 @@ const Aside = () => {
 
                     <nav>
                         <ul>
-                            <NavLink to='/chat' title='Context AI'><AiAgentInvocation size={15} /><span>Context AI</span></NavLink>
+                            <NavLink to='/chat' title='Context AI'><ShapeExclude size={15} /><span>Context AI</span></NavLink>
                         </ul>
                     </nav>
 
@@ -76,12 +76,12 @@ const Aside = () => {
                 </div>
 
                 <div className='aside-nav-profile'>
-                    <Link to='/profile'>
-                        <img src={user?.profile?.photo} alt={FirstName()} />
+                    <Link>
+                        <img src={user?.photo} alt={FirstName()} />
 
                         <div>
                             <h1>{FirstName()}</h1>
-                            <h2>{user?.profile?.position}</h2>
+                            <h2>{user?.plan}</h2>
                         </div>
                     </Link>
 
