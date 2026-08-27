@@ -212,10 +212,10 @@ body {
   background: #f8f8f8;
   overflow-x: hidden;
   z-index: 5;
-  transition: all 0.25s ease;
 }
 
 .aside-main.collapsed {
+  min-width: 50px;
   width: 50px;
 }
 
@@ -233,10 +233,6 @@ body {
   display: flex;
   width: 100px;
   filter: invert(1);
-}
-
-.aside-main.collapsed .aside-header {
-  padding: 15px 13px;
 }
 
 .aside-nav {
@@ -277,7 +273,7 @@ body {
 .aside-nav nav ul a {
   display: flex;
   align-items: center;
-  padding: 5px 10px;
+  padding: 5px 7px;
   font-size: 0.75rem;
   font-weight: 400;
   gap: 16px;
@@ -290,11 +286,7 @@ body {
 
 .aside-nav nav ul a span {
   opacity: 1;
-  transition: var(--transition-3s);
-}
-
-.aside-main.collapsed .aside-nav nav ul a {
-  padding: 5px 6px;
+  transition: all 0.5s ease;
 }
 
 .aside-main.collapsed .aside-nav nav ul a span {
@@ -302,9 +294,7 @@ body {
 }
 
 .aside-main.collapsed .aside-nav nav ul a svg {
-  min-width: 15px;
-  width: 15px;
-  height: 15px;
+  min-width: 16px;
 }
 
 .aside-nav nav ul a.active {

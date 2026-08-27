@@ -100,7 +100,9 @@ const Aside = () => {
                             <h2>{user?.plan}</h2>
                         </div>
                     </section>
-                    <ChevronSort size={14} />
+                    <button>
+                        <ChevronSort size={14} />
+                    </button>
                 </div>
             </section>
             <ModalProfile ref={modalRef} isOpen={profileOpen} onClose={closeProfile} />
