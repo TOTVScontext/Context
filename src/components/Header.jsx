@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Bell, Code, HelpCircle, MessageCircle, Search, Sidebar, Terminal } from '@geist-ui/icons'
+import { ChevronSort, Help, Search, Terminal } from '@carbon/icons-react'
 
 const Header = () => {
     const handleToggleAside = () => {
@@ -16,12 +16,12 @@ const Header = () => {
         <header className="header-main">
             <section className="header-left">
                 <button onClick={handleToggleAside}>
-                    <Code size={14} />
+                    <ChevronSort className='icon' size={16} />
                 </button>
 
                 <article className="header-search">
                     <button>
-                        <Search size={17} />
+                        <Search size={15} />
                     </button>
 
                     <input type="text" placeholder="Pesquisar (ctrl + p)" />
@@ -29,7 +29,7 @@ const Header = () => {
             </section>
 
             <section className="header-right">
-                <Link to=''><HelpCircle size={15} />Ajuda</Link>
+                <Link to=''><Help size={15} />Ajuda</Link>
 
                 <Link to='' className='active'>
                     <Terminal size={15} />

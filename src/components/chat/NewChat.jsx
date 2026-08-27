@@ -2,8 +2,8 @@ import { useEffect, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useChat } from '../../hooks/useChat'
 import { useUser } from '../../hooks/useUser'
-import { Aperture } from '@geist-ui/icons'
 import BarChat from './BarChat'
+import { AiAgentInvocation } from '@carbon/icons-react'
 
 const NewChat = () => {
     const navigate = useNavigate()
@@ -62,7 +62,7 @@ const NewChat = () => {
         <main className="new-chat-main">
 
             <section className="new-chat-welcome">
-                <Aperture size={34} className="rgb-color" />
+                <AiAgentInvocation size={35} className="rgb-color" />
                 <h1>Olá, {getFirstName()} {getLastName()}</h1>
             </section>
 

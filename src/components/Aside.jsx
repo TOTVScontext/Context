@@ -2,8 +2,8 @@ import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { useUser } from '../hooks/useUser'
 import { logout } from '../services/auth'
 import logo from '../assets/svg/logo-context.svg'
-import { Aperture, Archive, BookOpen, Calendar, Grid, Home, LogOut, Settings, TrendingUp } from "@geist-ui/icons"
 import { useEffect, useState } from 'react'
+import { AiAgentInvocation, Aperture, Box, Calendar, Grid, Growth, Home, IbmKnowledgeCatalog, Logout, Settings } from '@carbon/icons-react'
 
 const Aside = () => {
     const { user } = useUser()
@@ -53,17 +53,17 @@ const Aside = () => {
                 <div className='aside-nav-scrool'>
                     <nav>
                         <ul>
-                            <NavLink to='/home' title='Início'><Home size={15} /><span>Início</span></NavLink>
-                            <NavLink to='/analysis' title='Análises'><Archive size={15} /><span>Análises</span></NavLink>
-                            <NavLink to='/deshboard' title='Painel geral'><TrendingUp size={15} /><span>Painel geral</span></NavLink>
-                            <NavLink to='/course' title='Cursos'><BookOpen size={15} /><span>Cursos</span></NavLink>
-                            <NavLink to='/calendar' title='Agenda'><Calendar size={15} /><span>Agenda</span></NavLink>
+                            <NavLink to='/home' title='Início'><Home size={16} /><span>Início</span></NavLink>
+                            <NavLink to='/analysis' title='Análises'><Box size={16} /><span>Análises</span></NavLink>
+                            <NavLink to='/deshboard' title='Painel geral'><Growth size={16} /><span>Painel geral</span></NavLink>
+                            <NavLink to='/course' title='Cursos'><IbmKnowledgeCatalog size={16} /><span>Cursos</span></NavLink>
+                            <NavLink to='/calendar' title='Agenda'><Calendar size={16} /><span>Agenda</span></NavLink>
                         </ul>
                     </nav>
 
                     <nav>
                         <ul>
-                            <NavLink to='/chat' title='Context AI'><Aperture size={15} /><span>Context AI</span></NavLink>
+                            <NavLink to='/chat' title='Context AI'><AiAgentInvocation size={15} /><span>Context AI</span></NavLink>
                         </ul>
                     </nav>
 
@@ -86,7 +86,7 @@ const Aside = () => {
                     </Link>
 
                     <button onClick={handleLogout}>
-                        <LogOut size={15} />
+                        <Logout size={15} />
                     </button>
                 </div>
             </section>

@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback } from 'react'
-import { Check, Edit, MessageSquare, Plus, Trash2, X } from '@geist-ui/icons'
 import { ChatService } from '../../services/chatService'
 import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Add, Chat, Checkmark, Close, TrashCan, Edit } from '@carbon/icons-react'
 
 const AsideChat = () => {
   const navigate = useNavigate()
@@ -136,11 +136,11 @@ const AsideChat = () => {
       <header className="chat-aside-header">
         <div>
           <h1>Meus Chats</h1>
-          <MessageSquare size={14} />
+          <Chat size={14} />
         </div>
 
         <button onClick={handleNewChat} title="Novo chat">
-          <Plus size={16} />
+          <Add size={18} />
         </button>
       </header>
 
@@ -185,28 +185,28 @@ const AsideChat = () => {
                 {isEditing ? (
                   <>
                     <button onClick={cancelEditing}>
-                      <X size={16} />
+                      <Close size={17} />
                     </button>
                     <button onClick={() => confirmEditing(chat.id)}>
-                      <Check size={16} />
+                      <Checkmark size={16} />
                     </button>
                   </>
                 ) : isDeleting ? (
                   <>
                     <button onClick={cancelDeleting}>
-                      <X size={16} />
+                      <Close size={17} />
                     </button>
                     <button onClick={() => confirmDelete(chat.id)}>
-                      <Check size={16} />
+                      <Checkmark size={16} />
                     </button>
                   </>
                 ) : (
                   <>
                     <button onClick={() => startDeleting(chat.id)}>
-                      <Trash2 size={15} />
+                      <TrashCan size={14} />
                     </button>
                     <button onClick={() => startEditing(chat)}>
-                      <Edit size={15} />
+                      <Edit size={14} />
                     </button>
                   </>
                 )}

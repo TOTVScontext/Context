@@ -134,6 +134,10 @@ body {
   background: #e9e9e9;
 }
 
+.header-left button .icon {
+  transform: rotateZ(90deg);
+}
+
 .header-search {
   display: flex;
   align-items: center;
@@ -186,7 +190,7 @@ body {
 .header-right a {
   display: flex;
   align-items: center;
-  gap: 7px;
+  gap: 6px;
   font-size: 0.75rem;
   color: var(--gray-color-2);
   transition: var(--transition-2s);
@@ -308,7 +312,7 @@ body {
 }
 
 .aside-nav nav ul a:hover {
-  background: #e9e9e9;
+  background: #eaeaea;
   color: #1f1f1f;
 }
 
@@ -348,6 +352,7 @@ body {
   width: 110px;
   white-space: nowrap;
   overflow: hidden;
+  text-overflow: ellipsis;
   font-size: 0.75rem;
   font-weight: 500;
 }
@@ -357,6 +362,7 @@ body {
   width: 110px;
   white-space: nowrap;
   overflow: hidden;
+  text-overflow: ellipsis;
   font-size: 0.6rem;
   font-weight: 400;
   color: var(--gray-color);

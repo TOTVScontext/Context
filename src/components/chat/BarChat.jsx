@@ -1,5 +1,5 @@
 import { useRef, useEffect, useState } from 'react'
-import { Send, Square, Plus, X } from '@geist-ui/icons'
+import { Add, Close, Send, SquareSolid } from '@carbon/icons-react'
 
 const ALLOWED_EXTS = new Set([
   'txt', 'md', 'json', 'csv', 'tsv', 'yaml', 'yml', 'log', 'sql',
@@ -92,7 +92,7 @@ const BarChat = ({ onSend, onStop, isLoading, active }) => {
                 aria-label={`Remover ${f.name}`}
                 className="bar-chat-chip-remove"
               >
-                <X size={12} />
+                <Close size={13} />
               </button>
             </span>
           ))}
@@ -121,7 +121,7 @@ const BarChat = ({ onSend, onStop, isLoading, active }) => {
           disabled={isLoading || files.length >= MAX_FILES}
           aria-label="Anexar arquivo"
         >
-          <Plus size={18} />
+          <Add size={18} />
         </button>
 
         <input
@@ -143,7 +143,7 @@ const BarChat = ({ onSend, onStop, isLoading, active }) => {
               onClick={onStop}
               aria-label="Parar geração"
             >
-              <Square size={16} />
+              <SquareSolid size={18} />
             </button>
           ) : (
             <button
@@ -152,7 +152,7 @@ const BarChat = ({ onSend, onStop, isLoading, active }) => {
               disabled={!canSend}
               aria-label="Enviar mensagem"
             >
-              <Send size={16} />
+              <Send size={18} />
             </button>
           )}
         </div>
