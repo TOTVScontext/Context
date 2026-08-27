@@ -1,17 +1,20 @@
-import { Link, NavLink, useNavigate } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { useUser } from '../hooks/useUser'
-import { logout } from '../services/auth'
 import logo from '../assets/svg/logo-context.svg'
-import { useEffect, useState } from 'react'
-import { Box, Calendar, Grid, Growth, Home, IbmKnowledgeCatalog, Logout, Settings, ShapeExclude } from '@carbon/icons-react'
+import { useEffect, useState, useRef, useCallback } from 'react'
+import { Box, Calendar, ChevronSort, Grid, Growth, Home, IbmKnowledgeCatalog, Logout, Settings, ShapeExclude } from '@carbon/icons-react'
+import ModalProfile from './ModalProfile'
 
 const Aside = () => {
     const { user } = useUser()
-    const navigate = useNavigate()
 
     const [collapsed, setCollapsed] = useState(() => {
         return localStorage.getItem('aside_open') === 'false'
     })
+
+    const [profileOpen, setProfileOpen] = useState(false)
+    const profileTriggerRef = useRef(null)
+    const modalRef = useRef(null)
 
     useEffect(() => {
         const handleAsideToggle = () => {
@@ -25,27 +28,40 @@ const Aside = () => {
         }
     }, [])
 
+    useEffect(() => {
+        if (!profileOpen) return
+
+        const handleClickOutside = (event) => {
+            if (modalRef.current?.contains(event.target)) return
+            if (profileTriggerRef.current?.contains(event.target)) return
+
+            setProfileOpen(false)
+        }
+
+        document.addEventListener('mousedown', handleClickOutside)
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside)
+        }
+    }, [profileOpen])
+
+    const toggleProfile = useCallback(() => {
+        setProfileOpen(prev => !prev)
+    }, [])
+
+    const closeProfile = useCallback(() => {
+        setProfileOpen(false)
+    }, [])
+
     const FirstName = () => {
         return user?.name?.trim().split(/\s+/).filter(Boolean)[0] || ''
-    }
-
-    const handleLogout = async (e) => {
-        e.preventDefault()
-
-        try {
-            await logout()
-            window.location.reload()
-            navigate('/login', { replace: true })
-        } catch (err) {
-            console.error('Logout failed', err)
-        }
     }
 
     return (
         <aside className={`aside-main ${collapsed ? 'collapsed' : ''}`}>
             <header className='aside-header'>
                 <Link to='/home'>
-                    <img src={logo} alt="TOTVScontext" />
+                    <img draggable={false} src={logo} alt="TOTVScontext" />
                 </Link>
             </header>
 
@@ -75,21 +91,19 @@ const Aside = () => {
                     </nav>
                 </div>
 
-                <div className='aside-nav-profile'>
-                    <Link>
-                        <img src={user?.photo} alt={FirstName()} />
+                <div ref={profileTriggerRef} className={`aside-nav-profile ${profileOpen ? 'active' : ''}`} onClick={toggleProfile}>
+                    <section>
+                        <img draggable={false} src={user?.photo} alt={FirstName()} />
 
                         <div>
                             <h1>{FirstName()}</h1>
                             <h2>{user?.plan}</h2>
                         </div>
-                    </Link>
-
-                    <button onClick={handleLogout}>
-                        <Logout size={15} />
-                    </button>
+                    </section>
+                    <ChevronSort size={14} />
                 </div>
             </section>
+            <ModalProfile ref={modalRef} isOpen={profileOpen} onClose={closeProfile} />
         </aside>
     )
 }

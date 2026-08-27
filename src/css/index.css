@@ -205,7 +205,8 @@ body {
 .aside-main {
   display: flex;
   flex-direction: column;
-  width: 250px;
+  min-width: 240px;
+  width: 240px;
   height: 100vh;
   border-right: 1px solid var(--border-color);
   background: #f8f8f8;
@@ -280,7 +281,7 @@ body {
   font-size: 0.75rem;
   font-weight: 400;
   gap: 16px;
-  border-radius: 4px;
+  border-radius: 3px;
   color: var(--gray-color-2);
   white-space: nowrap;
   overflow: hidden;
@@ -322,9 +323,19 @@ body {
   justify-content: space-between;
   padding: 10px;
   border-top: 1px solid var(--border-color);
+  cursor: pointer;
+  transition: var(--transition-2s);
 }
 
-.aside-nav-profile a {
+.aside-nav-profile:hover {
+  background: #f3f3f3;
+}
+
+.aside-nav-profile.active {
+  background: #f3f3f3;
+}
+
+.aside-nav-profile section {
   display: flex;
   align-items: center;
   gap: 15px;
@@ -332,23 +343,23 @@ body {
   overflow: hidden;
 }
 
-.aside-nav-profile a img {
+.aside-nav-profile section img {
   display: flex;
   width: 25px;
   height: 25px;
   border-radius: 3px;
 }
 
-.aside-nav-profile a div {
+.aside-nav-profile section div {
   opacity: 1;
   transition: var(--transition-2s);
 }
 
-.aside-main.collapsed .aside-nav-profile a div {
+.aside-main.collapsed .aside-nav-profile section div {
   opacity: 0;
 }
 
-.aside-nav-profile a div h1 {
+.aside-nav-profile section div h1 {
   width: 110px;
   white-space: nowrap;
   overflow: hidden;
@@ -357,7 +368,7 @@ body {
   font-weight: 500;
 }
 
-.aside-nav-profile a div h2 {
+.aside-nav-profile section div h2 {
   margin-top: -3px;
   width: 110px;
   white-space: nowrap;
@@ -388,4 +399,57 @@ body {
 .aside-nav-profile button:hover {
   background: #eeeeee;
   color: var(--danger-color);
+}
+
+/* modal profile */
+.modal-profile {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  width: 220px;
+  height: fit-content;
+  bottom: 60px;
+  left: 10px;
+  background: #f3f3f3;
+  border: 1px solid var(--border-color);
+  border-radius: 3px;
+  padding: 5px;
+}
+
+.modal-profile p {
+  margin-left: 10px;
+  font-size: 0.7rem;
+  font-weight: 400;
+  color: #7c7c7c;
+}
+
+.modal-profile hr {
+  margin: 5px 0;
+  display: flex;
+  border: none;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.modal-profile button {
+  display: flex;
+  align-items: center;
+  padding: 5px 10px;
+  font-size: 0.75rem;
+  font-weight: 400;
+  gap: 16px;
+  border: none;
+  border-radius: 3px;
+  color: var(--gray-color-2);
+  background: transparent;
+  transition: var(--transition-2s);
+  cursor: pointer;
+}
+
+.modal-profile button:hover {
+  background: #e8e8e8;
+  color: #1f1f1f;
+}
+
+.modal-profile button:last-child:hover {
+  color: #d13838;
 }
