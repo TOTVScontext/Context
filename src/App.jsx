@@ -8,6 +8,7 @@ import Chat from "./routes/Chat"
 import NewChat from "./components/chat/NewChat"
 import ActiveChat from "./components/chat/ActiveChat"
 import Welcome from "./routes/Welcome"
+import Cli from "./routes/Cli"
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
         <Route path='/' element={<Navigate to={`${isFirstLogin == false ? '/welcome' : '/home'}`} />} />
         <Route path='/login' element={<Login />} />
         <Route path='/welcome' element={<Welcome />} />
+        <Route path='/cli' element={<Cli />} />
         <Route element={<ProtectedRoute />}>
           <Route path='/home' element={<Home />} />
           <Route path='/chat' element={<Chat />} >

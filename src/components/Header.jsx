@@ -31,7 +31,7 @@ const Header = () => {
             <section className="header-right">
                 <Link to=''><Help size={15} />Ajuda</Link>
 
-                <Link to='' className='active'>
+                <Link to='/cli' className='active'>
                     <Terminal size={15} />
                     Context CLI
                 </Link>
