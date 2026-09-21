@@ -1,5 +1,5 @@
 import { useRef, useEffect, useState } from 'react'
-import { Add, Close, Send, SquareSolid } from '@carbon/icons-react'
+import { Add, ArrowUp, Close, Send, SquareOutline, SquareSolid, VoiceMode } from '@carbon/icons-react'
 
 const ALLOWED_EXTS = new Set([
   'txt', 'md', 'json', 'csv', 'tsv', 'yaml', 'yml', 'log', 'sql',
@@ -121,7 +121,7 @@ const BarChat = ({ onSend, onStop, isLoading, active }) => {
           disabled={isLoading || files.length >= MAX_FILES}
           aria-label="Anexar arquivo"
         >
-          <Add size={18} />
+          <Add size={20} />
         </button>
 
         <input
@@ -135,7 +135,7 @@ const BarChat = ({ onSend, onStop, isLoading, active }) => {
         />
 
         <div className="bar-chat-right">
-          <p className="bar-chat-model">Pleroma - Graham 1.8</p>
+          <p className="bar-chat-model">Context 3 Ultra</p>
 
           {isLoading ? (
             <button
@@ -143,16 +143,20 @@ const BarChat = ({ onSend, onStop, isLoading, active }) => {
               onClick={onStop}
               aria-label="Parar geração"
             >
-              <SquareSolid size={18} />
+              <SquareOutline size={21} />
             </button>
           ) : (
             <button
-              className="bar-chat-send-btn"
+              className={`bar-chat-send-btn ${value ? 'active' : ''}`}
               onClick={handleSend}
               disabled={!canSend}
               aria-label="Enviar mensagem"
             >
-              <Send size={18} />
+              {value ?
+                <ArrowUp size={18} />
+                :
+                <VoiceMode size={20} />
+              }
             </button>
           )}
         </div>

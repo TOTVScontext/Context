@@ -37,55 +37,19 @@ body {
   overflow: hidden;
 }
 
-/* rgb */
-.rgb-color {
-  animation: rgb-color 10s infinite linear;
-  transition: color 0.2s ease-in-out;
+
+.loop {
+  animation: loop 1s linear infinite;
 }
 
-
-@keyframes rgb-color {
-  0% {
-    color: #93c5fd;
+@keyframes loop {
+  from{
+    transform: rotateZ(0deg);
   }
-
-  12% {
-    color: #a5b4fc;
-  }
-
-  24% {
-    color: #c4b5fd;
-  }
-
-  36% {
-    color: #f0abfc;
-  }
-
-  48% {
-    color: #fca5a5;
-  }
-
-  60% {
-    color: #fdba74;
-  }
-
-  72% {
-    color: #fef08a;
-  }
-
-  84% {
-    color: #bbf7d0;
-  }
-
-  92% {
-    color: #676b71;
-  }
-
-  100% {
-    color: #93c5fd;
+  to{
+    transform: rotateZ(-360deg);
   }
 }
-
 
 /* content */
 .content-main {
@@ -374,8 +338,6 @@ body {
   align-items: center;
   justify-content: center;
   border: none;
-  border-radius: 3px;
-  padding: 5px;
   color: #383838;
   background: transparent;
   transition: var(--transition-2s);
@@ -384,11 +346,6 @@ body {
 
 .aside-main.collapsed .aside-nav-profile button {
   display: none;
-}
-
-.aside-nav-profile button:hover {
-  background: #eeeeee;
-  color: var(--danger-color);
 }
 
 /* modal profile */

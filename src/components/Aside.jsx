@@ -2,7 +2,7 @@ import { Link, NavLink } from 'react-router-dom'
 import { useUser } from '../hooks/useUser'
 import logo from '../assets/svg/logo-context.svg'
 import { useEffect, useState, useRef, useCallback } from 'react'
-import { Box, Calendar, ChevronSort, Grid, Growth, Home, IbmKnowledgeCatalog, Logout, Settings, ShapeExclude } from '@carbon/icons-react'
+import { Box, Calendar, ChevronSort, Dashboard, Grid, Growth, Home, IbmKnowledgeCatalog, Settings, ShapeExclude } from '@carbon/icons-react'
 import ModalProfile from './ModalProfile'
 
 const Aside = () => {
@@ -15,6 +15,10 @@ const Aside = () => {
     const [profileOpen, setProfileOpen] = useState(false)
     const profileTriggerRef = useRef(null)
     const modalRef = useRef(null)
+
+    const closeAside = () => {
+        localStorage.setItem('aside_open', 'false')
+    }
 
     useEffect(() => {
         const handleAsideToggle = () => {
@@ -53,8 +57,12 @@ const Aside = () => {
         setProfileOpen(false)
     }, [])
 
-    const FirstName = () => {
-        return user?.name?.trim().split(/\s+/).filter(Boolean)[0] || ''
+    const FullName = () => {
+        const names = user?.name?.trim().split(/\s+/).filter(Boolean) || []
+
+        if (names.length <= 1) return names[0] || ''
+
+        return `${names[0]} ${names[names.length - 1]}`
     }
 
     return (
@@ -71,7 +79,7 @@ const Aside = () => {
                         <ul>
                             <NavLink to='/home' title='Início'><Home size={16} /><span>Início</span></NavLink>
                             <NavLink to='/analysis' title='Análises'><Box size={16} /><span>Análises</span></NavLink>
-                            <NavLink to='/deshboard' title='Painel geral'><Growth size={16} /><span>Painel geral</span></NavLink>
+                            <NavLink to='/deshboard' title='Painel geral'><Dashboard size={16} /><span>Painel geral</span></NavLink>
                             <NavLink to='/course' title='Cursos'><IbmKnowledgeCatalog size={16} /><span>Cursos</span></NavLink>
                             <NavLink to='/calendar' title='Agenda'><Calendar size={16} /><span>Agenda</span></NavLink>
                         </ul>
@@ -79,7 +87,7 @@ const Aside = () => {
 
                     <nav>
                         <ul>
-                            <NavLink to='/chat' title='Context AI'><ShapeExclude size={15} /><span>Context AI</span></NavLink>
+                            <NavLink to='/chat' onClick={closeAside} title='Context AI'><ShapeExclude size={15} /><span>Context AI</span></NavLink>
                         </ul>
                     </nav>
 
@@ -93,10 +101,10 @@ const Aside = () => {
 
                 <div ref={profileTriggerRef} className={`aside-nav-profile ${profileOpen ? 'active' : ''}`} onClick={toggleProfile}>
                     <section>
-                        <img draggable={false} src={user?.photo} alt={FirstName()} />
+                        <img draggable={false} src={user?.photo} />
 
                         <div>
-                            <h1>{FirstName()}</h1>
+                            <h1>{FullName()}</h1>
                             <h2>{user?.plan}</h2>
                         </div>
                     </section>

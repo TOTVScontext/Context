@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback } from 'react'
 import { ChatService } from '../../services/chatService'
 import { Link, useNavigate, useParams } from 'react-router-dom'
-import { Add, Chat, Checkmark, Close, TrashCan, Edit } from '@carbon/icons-react'
+import { Add, Chat, Checkmark, Close, TrashCan, Edit, Rotate, ProgressBarRound } from '@carbon/icons-react'
 
 const AsideChat = () => {
   const navigate = useNavigate()
@@ -145,7 +145,7 @@ const AsideChat = () => {
       </header>
 
       <section className="chat-aside-grid">
-        {loading && <p className="chat-aside-loading">Carregando...</p>}
+        {loading && <p className="chat-loading"><ProgressBarRound className='loop' size={18} /></p>}
 
         {!loading && chats.length === 0 && (
           <p className="chat-nochats">Nenhum chat ainda</p>

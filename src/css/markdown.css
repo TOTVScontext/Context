@@ -4,7 +4,7 @@
 .markdown-content {
     display: flex;
     flex-direction: column;
-    max-width: 650px;
+    max-width: 610px;
     overflow: hidden;
     gap: 4px;
     line-height: 1.6;
