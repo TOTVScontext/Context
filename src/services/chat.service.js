@@ -6,7 +6,6 @@ function buildHeaders(isJSON = true) {
     : undefined
 }
 
-
 const _cache = {
   list: new Map(),
   get: new Map(),

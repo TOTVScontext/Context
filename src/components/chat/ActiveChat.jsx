@@ -7,7 +7,7 @@ import rehypeKatex from 'rehype-katex'
 import rehypeHighlight from 'rehype-highlight'
 import { useChat } from '../../hooks/useChat'
 import BarChat from './BarChat'
-import { ChatService } from '../../services/chatService'
+import { ChatService } from '../../services/chat.service.js'
 import { AlertTriangle, Copy, Check } from '@geist-ui/icons'
 
 function normaliseMarkdown(raw) {

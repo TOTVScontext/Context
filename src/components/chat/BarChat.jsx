@@ -1,5 +1,5 @@
 import { useRef, useEffect, useState } from 'react'
-import { Add, ArrowUp, Close, Send, SquareOutline, SquareSolid, VoiceMode } from '@carbon/icons-react'
+import { Add, ArrowUp, Close, SquareOutline, VoiceMode } from '@carbon/icons-react'
 
 const ALLOWED_EXTS = new Set([
   'txt', 'md', 'json', 'csv', 'tsv', 'yaml', 'yml', 'log', 'sql',

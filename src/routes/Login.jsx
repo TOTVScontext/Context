@@ -4,7 +4,7 @@ import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import { Eye, EyeOff } from '@geist-ui/icons'
 import { useUser } from '../hooks/useUser'
 import { useState, useEffect } from 'react'
-import { login, register } from '../services/auth'
+import { login, register } from '../services/auth.service.js'
 
 const Login = () => {
     const [searchParams] = useSearchParams()

@@ -18,6 +18,7 @@ const Aside = () => {
 
     const closeAside = () => {
         localStorage.setItem('aside_open', 'false')
+        window.dispatchEvent(new Event('aside-toggle'))
     }
 
     useEffect(() => {

@@ -1,6 +1,6 @@
 import { Blog, Help, Logout, Settings } from "@carbon/icons-react"
 import { useUser } from "../hooks/useUser"
-import { logout } from "../services/auth"
+import { logout } from "../services/auth.service"
 import { useNavigate } from "react-router-dom"
 import { forwardRef } from 'react'
 
@@ -15,8 +15,8 @@ const ModalProfile = forwardRef(({ isOpen, onClose }, ref) => {
         
         try {
             await logout()
-            window.location.reload()
             navigate('/login', { replace: true })
+            window.location.reload()
         } catch (err) {
             console.error('Logout failed', err)
         }

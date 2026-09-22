@@ -1,5 +1,5 @@
 import { useReducer, useRef, useCallback, useEffect, useMemo } from 'react'
-import { sendMessageStream } from '../services/chatService'
+import { sendMessageStream } from '../services/chat.service.js'
 
 const ACTIONS = {
   SEND_START: 'SEND_START',

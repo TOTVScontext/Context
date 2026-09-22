@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback } from 'react'
-import { ChatService } from '../../services/chatService'
+import { ChatService } from '../../services/chat.service.js'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { Add, Chat, Checkmark, Close, TrashCan, Edit, Rotate, ProgressBarRound } from '@carbon/icons-react'
 
