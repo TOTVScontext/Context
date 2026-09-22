@@ -119,3 +119,17 @@
     font-weight: 400;
     color: #545454;
 }
+
+.home-footer {
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.home-footer p {
+    font-family: "Libre Baskerville", serif;
+    font-size: 0.7rem;
+    font-weight: 300;
+    color: #969696;
+}

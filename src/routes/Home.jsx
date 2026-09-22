@@ -33,6 +33,9 @@ const Home = () => {
                             </section>
                         </div>
                     </section>
+                    <footer className='home-footer'>
+                        <p>Entenda o que foi dito, identifique o que importa e saiba onde agir.</p>
+                    </footer>
                 </div>
             </section>
         </main>
