@@ -1,0 +1,36 @@
+.error-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+.error-main img {
+    display: flex;
+    width: 70px;
+}
+
+.error-main h1 {
+    margin-top: 20px;
+    font-family: "Libre Baskerville", serif;
+    font-size: 1.7rem;
+}
+
+.error-main p {
+    text-align: center;
+    margin-top: 3px;
+    font-size: 0.9rem;
+}
+
+.error-main a {
+    margin-top: 25px;
+    display: flex;
+    padding: 7px 15px;
+    background: #000;
+    border-radius: 3px;
+    font-size: 0.8rem;
+    font-weight: 300;
+    color: #f5f5f5;
+}

@@ -9,6 +9,7 @@ import NewChat from "./components/chat/NewChat"
 import ActiveChat from "./components/chat/ActiveChat"
 import Welcome from "./routes/Welcome"
 import Cli from "./routes/Cli"
+import Error from "./routes/Error"
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path='*' element={<Error />} />
         <Route path='/' element={<Navigate to={`${isFirstLogin == false ? '/welcome' : '/home'}`} />} />
         <Route path='/login' element={<Login />} />
         <Route path='/welcome' element={<Welcome />} />
