@@ -10,6 +10,7 @@ import ActiveChat from "./components/chat/ActiveChat"
 import Welcome from "./routes/Welcome"
 import Cli from "./routes/Cli"
 import Error from "./routes/Error"
+import NewAnalysis from "./routes/NewAnalysis"
 
 function App() {
 
@@ -28,6 +29,7 @@ function App() {
         <Route path='/cli' element={<Cli />} />
         <Route element={<ProtectedRoute />}>
           <Route path='/home' element={<Home />} />
+          <Route path='/new' element={<NewAnalysis />} />
           <Route path='/chat' element={<Chat />} >
             <Route index element={<Navigate to='new' />} />
             <Route path='new' element={<NewChat />} />
