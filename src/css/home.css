@@ -59,7 +59,6 @@
 .home-cta h1 {
     font-family: "Libre Baskerville", serif;
     font-size: 1.3rem;
-    color: #1e1e1e;
 }
 
 .home-cta h2 {
@@ -88,6 +87,104 @@
     background: #3e3e3e;
 }
 
+.home-features {
+    display: flex;
+    flex-direction: column;
+}
+
+.home-features-header {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.home-features-header h1 {
+    font-family: "Libre Baskerville", serif;
+    font-size: 1.3rem;
+}
+
+.home-features-header p {
+    font-size: 0.8rem;
+    font-weight: 300;
+    line-height: 1.4;
+    max-width: 50%;
+}
+
+.home-features-grid {
+    margin-top: 30px;
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+}
+
+.home-features-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 60px;
+    padding: 10px;
+    border: 1px solid #101010;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: var(--transition-2s);
+}
+
+.home-features-card:hover {
+    background: #000;
+}
+
+.home-features-card:hover footer .icon {
+    color: #ebebeb;
+}
+
+.home-features-card:hover footer a {
+    color: #c2c2c2;
+}
+
+.home-features-card:hover h1 {
+    opacity: 0;
+}
+
+.home-features-card:hover h2 {
+    opacity: 1;
+}
+
+.home-features-card h1 {
+    font-size: 1rem;
+    font-weight: 400;
+    color: #000;
+    transition: all 0.4s ease-in;
+}
+
+.home-features-card h2 {
+    opacity: 0;
+    width: 92%;
+    position: absolute;
+    font-size: 0.75rem;
+    font-weight: 200;
+    color: #f5f5f5;
+    transition: all 0.35s ease-in;
+}
+
+.home-features-card footer {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+}
+
+.home-features-card footer .icon {
+    color: #646464;
+}
+
+.home-features-card footer a {
+    display: flex;
+    width: fit-content;
+    height: fit-content;
+    color: #000;
+}
+
 
 .home-news header {
     display: flex;
@@ -97,8 +194,7 @@
 
 .home-news header h1 {
     font-family: "Libre Baskerville", serif;
-    font-size: 0.95rem;
-    font-weight: 900;
+    font-size: 1.3rem;
 }
 
 .home-news header a {
@@ -110,7 +206,7 @@
 }
 
 .home-news-grid {
-    margin-top: 10px;
+    margin-top: 15px;
     display: flex;
     flex-direction: column;
 }
