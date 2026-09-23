@@ -2,7 +2,7 @@ import { Link, NavLink } from 'react-router-dom'
 import { useUser } from '../hooks/useUser'
 import logo from '../assets/svg/logo-context.svg'
 import { useEffect, useState, useRef, useCallback } from 'react'
-import { Box, Calendar, ChevronSort, Dashboard, Grid, Growth, Home, IbmKnowledgeCatalog, Settings, ShapeExclude } from '@carbon/icons-react'
+import { Box, Calendar, ChevronSort, Dashboard, Grid, Growth, Home, IbmKnowledgeCatalog, NewTab, Settings, ShapeExclude } from '@carbon/icons-react'
 import ModalProfile from './ModalProfile'
 
 const Aside = () => {
@@ -79,8 +79,9 @@ const Aside = () => {
                     <nav>
                         <ul>
                             <NavLink to='/home' title='Início'><Home size={16} /><span>Início</span></NavLink>
-                            <NavLink to='/analysis' title='Análises'><Box size={16} /><span>Análises</span></NavLink>
+                            <NavLink to='/new' title='Nova análise'><NewTab size={16} /><span>Nova análise</span></NavLink>
                             <NavLink to='/deshboard' title='Painel geral'><Dashboard size={16} /><span>Painel geral</span></NavLink>
+                            <NavLink to='/analysis' title='Análises'><Box size={16} /><span>Análises</span></NavLink>
                             <NavLink to='/course' title='Cursos'><IbmKnowledgeCatalog size={16} /><span>Cursos</span></NavLink>
                             <NavLink to='/calendar' title='Agenda'><Calendar size={16} /><span>Agenda</span></NavLink>
                         </ul>
