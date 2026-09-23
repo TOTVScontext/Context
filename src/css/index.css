@@ -242,7 +242,7 @@ body {
   font-weight: 400;
   gap: 16px;
   border-radius: 3px;
-  color: var(--gray-color-2);
+  color: #484848;
   white-space: nowrap;
   overflow: hidden;
   transition: var(--transition-2s);
