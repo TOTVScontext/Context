@@ -36,7 +36,7 @@ const Home = () => {
                         <div className="home-cta">
                             <h1>Entenda o que acontece nas suas reuniões</h1>
                             <h2>O Context transforma transcrições de reuniões em uma visão estruturada e inteligente sobre cada conversa. A solução utiliza Inteligência Artificial para identificar sentimento, engajamento, feedbacks, riscos e oportunidades, além de avaliar a saúde do relacionamento com o cliente.<br /><br />A partir desses dados, a plataforma organiza os principais pontos da reunião e gera insights que ajudam a compreender melhor o cenário, identificar pontos de atenção e apoiar decisões mais assertivas após cada conversa.</h2>
-                            <Link to='/analysis'>Criar nova análise <ArrowUpRight size={16} /></Link>
+                            <Link to='/new'>Criar nova análise <ArrowUpRight size={16} /></Link>
                         </div>
 
                         <div className='hr' />
