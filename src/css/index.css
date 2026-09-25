@@ -51,6 +51,65 @@ body {
   }
 }
 
+
+.dotLoad {
+    width: 6px;
+    max-width: 6px;
+    height: 6px;
+    max-height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+    animation: dotLoad 3s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+@keyframes dotLoad {
+
+    0% {
+        transform: scale(1, 1) rotate(0deg);
+        border-radius: 50%;
+    }
+
+    12% {
+        transform: scale(0.82, 1.45) rotate(0deg);
+        border-radius: 35%;
+    }
+
+    24% {
+        transform: scale(1.08, 0.92) rotate(0deg);
+        border-radius: 50%;
+    }
+
+    32% {
+        transform: scale(1, 1) rotate(0deg);
+        border-radius: 50%;
+    }
+
+    44% {
+        transform: scale(1.5, 0.82) rotate(0deg);
+        border-radius: 35%;
+    }
+
+    56% {
+        transform: scale(0.92, 1.08) rotate(0deg);
+        border-radius: 50%;
+    }
+
+    64% {
+        transform: scale(1, 1) rotate(0deg);
+        border-radius: 20%;
+    }
+
+    88% {
+        transform: scale(1, 1) rotate(360deg);
+        border-radius: 30%;
+    }
+
+    100% {
+        transform: scale(1, 1) rotate(0deg);
+        border-radius: 50%;
+    }
+}
+
 /* content */
 .content-main {
   display: flex;

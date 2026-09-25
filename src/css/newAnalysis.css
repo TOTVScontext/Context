@@ -144,3 +144,53 @@
     gap: 10px;
 }
 
+
+.newAnalysis-loading {
+    display: flex;
+    flex-direction: column;
+}
+
+.newAnalysis-loading h1 {
+    font-family: "Libre Baskerville", serif;
+    font-size: 1.3rem;
+}
+
+
+.newAnalysis-loading p {
+    margin-top: 5px;
+    width: 320px;
+    text-align: center;
+    font-size: 0.75rem;
+    font-weight: 300;
+    color: #7a7a7a;
+}
+
+.newAnalysis-loading img {
+    margin-top: 30px;
+    display: flex;
+    width: 300px;
+}
+
+.newAnalysis-loading h2 {
+    margin-top: 20px;
+    font-size: 0.75rem;
+    font-weight: 400;
+    width: 355px;
+    color: #696969;
+}
+
+.newAnalysis-loading h3 {
+    margin-top: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    width: 355px;
+    padding: 3px 10px;
+    gap: 8px;
+    border: 1.5px dashed #dadada;
+    color: #303030;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    font-weight: 300;
+}
+

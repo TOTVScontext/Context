@@ -1,12 +1,50 @@
 import '../css/newAnalysis.css'
 import Aside from "../components/Aside"
 import Header from "../components/Header"
-import { ChartBubblePacked, DocumentAdd } from '@carbon/icons-react'
+import { ChartBubblePacked, ChevronLeft, ChevronRight, DocumentAdd } from '@carbon/icons-react'
+import gifLoading from '../assets/img/loadingAnalysis.gif'
+import { useEffect, useState } from 'react'
+
+const analysisSteps = [
+    "Lendo a transcrição...",
+    "Identificando os principais pontos da conversa...",
+    "Analisando o contexto da reunião...",
+    "Avaliando o sentimento ao longo da conversa...",
+    "Identificando feedbacks e percepções...",
+    "Analisando o nível de engajamento...",
+    "Avaliando a qualidade da interação...",
+    "Identificando possíveis riscos e oportunidades...",
+    "Consolidando os principais insights...",
+    "Finalizando a análise da reunião...",
+    "Preparando tudo para enviar..."
+];
+
 
 const NewAnalysis = () => {
 
-    const isLoading = true
-    const isFile = true
+    const isLoading = false
+    const isFile = false
+
+    const [step, setStep] = useState(0);
+
+    useEffect(() => {
+        if (!isLoading) return;
+
+        const totalDuration = 140_000;
+        const stepDuration = totalDuration / (analysisSteps.length - 1);
+
+        const timer = setTimeout(() => {
+            setStep((current) => {
+                if (current >= analysisSteps.length - 1) {
+                    return current;
+                }
+
+                return current + 1;
+            });
+        }, stepDuration);
+
+        return () => clearTimeout(timer);
+    }, [isLoading, step]);
 
     return (
         <main className="newAnalysis-main">
@@ -48,7 +86,12 @@ const NewAnalysis = () => {
                         </div>
                         :
                         <div className='newAnalysis-loading'>
-                            <h1>Gerando Análise da transcrição</h1>
+                            <h1>Gerando Análise da transcrição.</h1>
+                            <p>Isso pode levar até um minuto dependendo do tamanho da transcrição.</p>
+                            <img src={gifLoading} draggable={false} />
+                            <h2>Status</h2>
+                            <h3><div className='dotLoad' />{analysisSteps[step]}</h3>
+                            <p>Estamos cuidando dos detalhes. Você pode pegar um café enquanto isso.</p>
                         </div>
                     }
                 </section>
