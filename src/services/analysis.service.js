@@ -4,14 +4,12 @@ function buildHeaders() {
   return { 'Content-Type': 'application/json' }
 }
 
-// ─── Cache leve em memória (mesmo padrão do chat.service.js) ─────────────────
-
 const _cache = {
   list: new Map(),
   get: new Map(),
 }
 
-const TTL = 1000 * 60 // 1 minuto
+const TTL = 1000 * 60
 
 function isFresh(entry) {
   return entry && (Date.now() - entry.timestamp < TTL)
@@ -44,12 +42,6 @@ async function parseErrorResponse(res, fallback) {
 }
 
 export const AnalysisService = {
-  /**
-   * Envia a transcrição para análise. O backend gera o relatório narrativo
-   * e as métricas numéricas e persiste no Supabase.
-   *
-   * @param {{ transcript: object, meetingId?: string, title?: string, signal?: AbortSignal }} params
-   */
   async analyze({ transcript, meetingId, title, signal }) {
     const res = await fetch(`${API_BASE}?action=analyze`, {
       method: 'POST',
