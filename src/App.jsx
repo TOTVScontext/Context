@@ -11,6 +11,7 @@ import Welcome from "./routes/Welcome"
 import Cli from "./routes/Cli"
 import Error from "./routes/Error"
 import NewAnalysis from "./routes/NewAnalysis"
+import Analysis from "./routes/Analysis"
 
 function App() {
 
@@ -30,6 +31,9 @@ function App() {
         <Route element={<ProtectedRoute />}>
           <Route path='/home' element={<Home />} />
           <Route path='/new' element={<NewAnalysis />} />
+          <Route path='/analysis' element={<Analysis />} >
+            <Route path=':id' element={''} />
+          </Route>
           <Route path='/chat' element={<Chat />} >
             <Route index element={<Navigate to='new' />} />
             <Route path='new' element={<NewChat />} />
