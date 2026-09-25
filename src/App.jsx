@@ -12,6 +12,7 @@ import Cli from "./routes/Cli"
 import Error from "./routes/Error"
 import NewAnalysis from "./routes/NewAnalysis"
 import Analysis from "./routes/Analysis"
+import ViewAnalysis from "./components/analysis/ViewAnalysis"
 
 function App() {
 
@@ -31,9 +32,8 @@ function App() {
         <Route element={<ProtectedRoute />}>
           <Route path='/home' element={<Home />} />
           <Route path='/new' element={<NewAnalysis />} />
-          <Route path='/analysis' element={<Analysis />} >
-            <Route path=':id' element={''} />
-          </Route>
+          <Route path='/analysis' element={<Analysis />} />
+          <Route path='/analysis/:id' element={<ViewAnalysis />} />
           <Route path='/chat' element={<Chat />} >
             <Route index element={<Navigate to='new' />} />
             <Route path='new' element={<NewChat />} />
