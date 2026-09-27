@@ -3,6 +3,7 @@ import { AnalysisService } from '../services/analysis.service.js'
 
 const MAX_FILE_SIZE = 8 * 1024 * 1024 // 8MB
 const ALLOWED_EXTS = new Set(['json', 'csv'])
+const DEFAULT_PAGE_SIZE = 20
 
 export const STAGES = {
   READING: 'reading',
@@ -23,6 +24,12 @@ const ACTIONS = {
   FETCH_START: 'FETCH_START',
   FETCH_SUCCESS: 'FETCH_SUCCESS',
   FETCH_ERROR: 'FETCH_ERROR',
+  LIST_START: 'LIST_START',
+  LIST_SUCCESS: 'LIST_SUCCESS',
+  LIST_ERROR: 'LIST_ERROR',
+  DELETE_START: 'DELETE_START',
+  DELETE_SUCCESS: 'DELETE_SUCCESS',
+  DELETE_ERROR: 'DELETE_ERROR',
 }
 
 const initialState = {
@@ -30,6 +37,18 @@ const initialState = {
   stage: null,
   error: null,
   result: null,
+
+  list: {
+    status: 'idle', // idle | loading | success | error
+    items: [],
+    total: 0,
+    page: 1,
+    pageSize: DEFAULT_PAGE_SIZE,
+    error: null,
+  },
+
+  deleteStatus: 'idle', // idle | loading | success | error
+  deleteError: null,
 }
 
 function reducer(state, action) {
@@ -42,7 +61,7 @@ function reducer(state, action) {
 
     case ACTIONS.SUCCESS:
     case ACTIONS.FETCH_SUCCESS:
-      return { status: 'success', stage: null, error: null, result: action.payload }
+      return { ...state, status: 'success', stage: null, error: null, result: action.payload }
 
     case ACTIONS.ERROR:
     case ACTIONS.FETCH_ERROR:
@@ -52,7 +71,45 @@ function reducer(state, action) {
       return { ...state, status: 'loading', stage: null, error: null }
 
     case ACTIONS.RESET:
-      return initialState
+      return { ...initialState, list: state.list }
+
+    case ACTIONS.LIST_START:
+      return { ...state, list: { ...state.list, status: 'loading', error: null } }
+
+    case ACTIONS.LIST_SUCCESS:
+      return {
+        ...state,
+        list: {
+          ...state.list,
+          status: 'success',
+          error: null,
+          items: action.payload.analyses ?? [],
+          total: action.payload.total ?? 0,
+          page: action.payload.page ?? state.list.page,
+          pageSize: action.payload.page_size ?? state.list.pageSize,
+        },
+      }
+
+    case ACTIONS.LIST_ERROR:
+      return { ...state, list: { ...state.list, status: 'error', error: action.payload } }
+
+    case ACTIONS.DELETE_START:
+      return { ...state, deleteStatus: 'loading', deleteError: null }
+
+    case ACTIONS.DELETE_SUCCESS:
+      return {
+        ...state,
+        deleteStatus: 'success',
+        deleteError: null,
+        list: {
+          ...state.list,
+          items: state.list.items.filter((item) => item.id !== action.payload),
+          total: Math.max(0, state.list.total - 1),
+        },
+      }
+
+    case ACTIONS.DELETE_ERROR:
+      return { ...state, deleteStatus: 'error', deleteError: action.payload }
 
     default:
       return state
@@ -141,18 +198,31 @@ async function fileToTranscript(file) {
   }
 }
 
+/** Extrai uma mensagem de erro amigável, incluindo o retryAfter do rate limit quando presente */
+function toErrorMessage(err, fallback) {
+  if (err?.name === 'AbortError') return null
+  if (err?.status === 429 && err?.retryAfter) {
+    return `Muitas requisições. Tente novamente em ${err.retryAfter}s.`
+  }
+  return err?.message ?? fallback
+}
+
 export function useAnalysis() {
   const [state, dispatch] = useReducer(reducer, initialState)
-  const abortRef = useRef(null)
+  const analyzeAbortRef = useRef(null)
+  const listAbortRef = useRef(null)
 
-  useEffect(() => () => abortRef.current?.abort(), [])
+  useEffect(() => () => {
+    analyzeAbortRef.current?.abort()
+    listAbortRef.current?.abort()
+  }, [])
 
   const analyzeFile = useCallback(async (file, { title } = {}) => {
     if (!file) return
 
-    abortRef.current?.abort()
+    analyzeAbortRef.current?.abort()
     const controller = new AbortController()
-    abortRef.current = controller
+    analyzeAbortRef.current = controller
 
     dispatch({ type: ACTIONS.START })
 
@@ -172,8 +242,9 @@ export function useAnalysis() {
       dispatch({ type: ACTIONS.SUCCESS, payload: result })
       return result
     } catch (err) {
-      if (err.name === 'AbortError') return
-      dispatch({ type: ACTIONS.ERROR, payload: err.message ?? 'Falha ao gerar a análise.' })
+      const message = toErrorMessage(err, 'Falha ao gerar a análise.')
+      if (message === null) return
+      dispatch({ type: ACTIONS.ERROR, payload: message })
       throw err
     }
   }, [])
@@ -187,19 +258,60 @@ export function useAnalysis() {
       dispatch({ type: ACTIONS.FETCH_SUCCESS, payload: result })
       return result
     } catch (err) {
-      dispatch({ type: ACTIONS.FETCH_ERROR, payload: err.message ?? 'Falha ao carregar a análise.' })
+      const message = toErrorMessage(err, 'Falha ao carregar a análise.')
+      if (message === null) return
+      dispatch({ type: ACTIONS.FETCH_ERROR, payload: message })
+      throw err
+    }
+  }, [])
+
+  const fetchList = useCallback(async (page = 1, pageSize = DEFAULT_PAGE_SIZE, opts = {}) => {
+    listAbortRef.current?.abort()
+    const controller = new AbortController()
+    listAbortRef.current = controller
+
+    dispatch({ type: ACTIONS.LIST_START })
+    try {
+      const result = await AnalysisService.list(page, pageSize, { ...opts, signal: controller.signal })
+      dispatch({ type: ACTIONS.LIST_SUCCESS, payload: result })
+      return result
+    } catch (err) {
+      const message = toErrorMessage(err, 'Falha ao listar as análises.')
+      if (message === null) return
+      dispatch({ type: ACTIONS.LIST_ERROR, payload: message })
+      throw err
+    }
+  }, [])
+
+  const refreshList = useCallback(() => (
+    fetchList(state.list.page, state.list.pageSize, { force: true })
+  ), [fetchList, state.list.page, state.list.pageSize])
+
+  const deleteAnalysis = useCallback(async (id) => {
+    if (!id) return
+
+    dispatch({ type: ACTIONS.DELETE_START })
+    try {
+      const result = await AnalysisService.delete(id)
+      dispatch({ type: ACTIONS.DELETE_SUCCESS, payload: id })
+      return result
+    } catch (err) {
+      const message = toErrorMessage(err, 'Falha ao excluir a análise.')
+      if (message === null) return
+      dispatch({ type: ACTIONS.DELETE_ERROR, payload: message })
       throw err
     }
   }, [])
 
   const reset = useCallback(() => {
-    abortRef.current?.abort()
+    analyzeAbortRef.current?.abort()
     dispatch({ type: ACTIONS.RESET })
   }, [])
 
   const stageMessage = state.stage ? STAGE_MESSAGES[state.stage] : null
 
   return useMemo(() => ({
+    // análise individual (upload → analyze / get)
     status: state.status,
     isLoading: state.status === 'loading',
     stage: state.stage,
@@ -209,5 +321,24 @@ export function useAnalysis() {
     analyzeFile,
     fetchAnalysis,
     reset,
-  }), [state.status, state.stage, stageMessage, state.error, state.result, analyzeFile, fetchAnalysis, reset])
+
+    // listagem paginada
+    list: state.list.items,
+    listTotal: state.list.total,
+    listPage: state.list.page,
+    listPageSize: state.list.pageSize,
+    isListLoading: state.list.status === 'loading',
+    listError: state.list.error,
+    fetchList,
+    refreshList,
+
+    // exclusão
+    isDeleting: state.deleteStatus === 'loading',
+    deleteError: state.deleteError,
+    deleteAnalysis,
+  }), [
+    state.status, state.stage, stageMessage, state.error, state.result,
+    state.list, state.deleteStatus, state.deleteError,
+    analyzeFile, fetchAnalysis, reset, fetchList, refreshList, deleteAnalysis,
+  ])
 }
