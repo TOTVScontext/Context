@@ -110,6 +110,43 @@ body {
     }
 }
 
+
+.skeleton {
+    position: relative;
+    overflow: hidden;
+    background: #fff;
+    isolation: isolate;
+}
+
+.skeleton::before {
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: -60%;
+    width: 80%;
+    height: 300%;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        #d8d8d846 50%,
+        transparent 100%
+    );
+    transform: rotate(35deg);
+    animation: skeleton-shimmer 1.5s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes skeleton-shimmer {
+    from {
+        transform: translateX(-120%) rotate(35deg);
+    }
+
+    to {
+        transform: translateX(420%) rotate(35deg);
+    }
+}
+
+
 /* content */
 .content-main {
   display: flex;

@@ -2,7 +2,7 @@ import { Link, NavLink } from 'react-router-dom'
 import { useUser } from '../hooks/useUser'
 import logo from '../assets/svg/logo-context.svg'
 import { useEffect, useState, useRef, useCallback } from 'react'
-import { Box, Calendar, ChevronSort, Dashboard, Grid, Growth, Home, IbmKnowledgeCatalog, NewTab, Settings, ShapeExclude } from '@carbon/icons-react'
+import { Box, Calendar, ChevronSort, Dashboard, Grid, Home, IbmKnowledgeCatalog, NewTab, Settings, ShapeExclude } from '@carbon/icons-react'
 import ModalProfile from './ModalProfile'
 
 const Aside = () => {
