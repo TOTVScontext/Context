@@ -1,18 +1,18 @@
 const API_BASE = 'https://api-totvs-context.vercel.app/api/analysis'
 
-function buildHeaders() {
-  return { 'Content-Type': 'application/json' }
-}
+const CACHE_TTL_MS = 60_000
 
 const _cache = {
   list: new Map(),
   get: new Map(),
 }
 
-const TTL = 1000 * 60
+function buildHeaders() {
+  return { 'Content-Type': 'application/json' }
+}
 
 function isFresh(entry) {
-  return entry && (Date.now() - entry.timestamp < TTL)
+  return Boolean(entry) && (Date.now() - entry.timestamp < CACHE_TTL_MS)
 }
 
 function setCache(map, key, data) {
@@ -42,17 +42,13 @@ async function parseErrorResponse(res, fallback) {
 }
 
 export const AnalysisService = {
-  async analyze({ transcript, meetingId, title, signal }) {
+  async analyze({ transcript, title, signal }) {
     const res = await fetch(`${API_BASE}?action=analyze`, {
       method: 'POST',
       headers: buildHeaders(),
       credentials: 'include',
       signal,
-      body: JSON.stringify({
-        transcript,
-        meeting_id: meetingId,
-        title,
-      }),
+      body: JSON.stringify({ transcript, title }),
     })
 
     if (!res.ok) {

@@ -1,7 +1,7 @@
 import '../css/newAnalysis.css'
 import Aside from "../components/Aside"
 import Header from "../components/Header"
-import { ChartBubblePacked, ChevronLeft, ChevronRight, DocumentAdd, DocumentImport } from '@carbon/icons-react'
+import { ChartBubblePacked, DocumentAdd, DocumentImport } from '@carbon/icons-react'
 import gifLoading from '../assets/img/loadingAnalysis.gif'
 import { useEffect, useRef, useState, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -56,7 +56,7 @@ const NewAnalysis = () => {
     useEffect(() => {
         if (!isLoading) return
 
-        const totalDuration = 180_000
+        const totalDuration = 80_000
         const stepDuration = totalDuration / (analysisSteps.length - 1)
 
         const timer = setTimeout(() => {

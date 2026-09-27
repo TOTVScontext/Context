@@ -63,7 +63,11 @@ function getExt(name = '') {
   return name.split('.').pop().toLowerCase()
 }
 
-/** Parser de CSV simples, tolerante a campos entre aspas com vírgulas internas. */
+function stripExtension(name = '') {
+  const idx = name.lastIndexOf('.')
+  return idx > 0 ? name.slice(0, idx) : name
+}
+
 function parseCsv(text) {
   const rows = []
   let row = []
@@ -101,7 +105,6 @@ function parseCsv(text) {
   })
 }
 
-/** Lê o arquivo selecionado e converte no formato de transcrição aceito pela API. */
 async function fileToTranscript(file) {
   const ext = getExt(file.name)
 
@@ -127,7 +130,6 @@ async function fileToTranscript(file) {
     return parsed
   }
 
-  // csv
   const rows = parseCsv(text)
   if (rows.length === 0) {
     throw new Error('O CSV está vazio ou não pôde ser interpretado.')
@@ -159,9 +161,11 @@ export function useAnalysis() {
 
       dispatch({ type: ACTIONS.SET_STAGE, payload: STAGES.ANALYZING })
 
+      const finalTitle = title?.trim() || stripExtension(file.name)
+
       const result = await AnalysisService.analyze({
         transcript,
-        title,
+        title: finalTitle,
         signal: controller.signal,
       })
 
