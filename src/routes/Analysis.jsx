@@ -120,7 +120,7 @@ const Analysis = () => {
                             <h1>Análises</h1>
                             <p>Gerencie suas análises em um só lugar. Abra, renomeie ou exclua análises existentes e acesse rapidamente os resultados de cada conversa.</p>
                         </div>
-                        <Link to="/analysis/new"><NewTab size={15} />Nova análise</Link>
+                        <Link to="/analysis/new"><NewTab size={14} />Nova análise</Link>
                     </header>
                     <section className="analysis-grid-main">
                         {isListLoading ?

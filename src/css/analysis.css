@@ -56,10 +56,10 @@
     padding: 4px 10px;
     gap: 7px;
     border-radius: 3px;
-    font-size: 0.75rem;
+    font-size: 0.72rem;
     font-weight: 400;
-    color: #5e5e5e;
-    border: 1.5px dashed #c7c7c7;
+    color: #282828;
+    border: 1px solid #898989;
     transition: var(--transition-2s);
 }
 
@@ -101,7 +101,6 @@
 
 .analysis-card:hover {
     border-color: #b3b3b3;
-    transform: scale(1.01);
 }
 
 .analysis-card:hover div {
@@ -246,6 +245,7 @@
 
 .analysis-card article h1 {
     width: 140px;
+    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     font-size: 0.75rem;
