@@ -1,6 +1,6 @@
 .viewAnalysis-main {
     --va-gold: #f3c11d;
-    --va-gold-text: #8e6d00;
+    --va-gold-text: #252525;
     --va-gold-tint: #fbf5e0;
     --va-ink: #161616;
     --va-text: #525252;
@@ -566,18 +566,3 @@ p.viewAnalysis-tag {
     font-size: 0.75rem;
     font-weight: 300;
 }
-
-.viewAnalysis-empty a {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-top: 20px;
-    padding: 8px 16px;
-    border-radius: var(--va-radius);
-    background: var(--va-gold);
-    font-size: 0.72rem;
-    color: #fff;
-    text-decoration: none;
-}
-
-.viewAnalysis-empty a:hover { background: var(--va-gold-text); }

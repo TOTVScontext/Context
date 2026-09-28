@@ -273,7 +273,6 @@ const ViewAnalysisContent = () => {
                                     <FileX size={32} />
                                     <h2>Não foi possível carregar a análise</h2>
                                     <p>{error}</p>
-                                    <Link to="/analysis"><ArrowLeft size={14} />Voltar para análises</Link>
                                 </article>
                             }
 

@@ -1,16 +1,19 @@
 import { useEffect, useCallback, useState } from "react"
-import { Link, useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 import Aside from "../components/Aside"
 import Header from "../components/Header"
 import '../css/analysis.css'
 import { Download, Edit, FaceDissatisfied, FileX, NewTab, TrashCan } from "@carbon/icons-react"
 import { useAnalysis } from "../hooks/useAnalysis"
 
-const GOAL_LABELS = {
-    success: "atendido",
-    failure: "falhou",
-    partial: "parcial",
+// O backend pode devolver "failure"; a tela de detalhe usa "fail". Aceitamos os dois.
+const GOALS = {
+    success: "Atendido",
+    partial: "Parcial",
+    fail: "Não atendido",
 }
+
+const normalizeGoal = (goal) => (goal === "failure" ? "fail" : goal)
 
 const RELATIVE_UNITS = [
     { limit: 60, divisor: 1, unit: "second" },
@@ -23,9 +26,9 @@ const rtf = new Intl.RelativeTimeFormat("pt-BR", { numeric: "auto" })
 const dateFormatter = new Intl.DateTimeFormat("pt-BR", { day: "2-digit", month: "2-digit", year: "numeric" })
 
 function formatDate(isoString) {
-    if (!isoString) return "data desconhecida"
+    if (!isoString) return "Data desconhecida"
     const date = new Date(isoString)
-    if (Number.isNaN(date.getTime())) return "data desconhecida"
+    if (Number.isNaN(date.getTime())) return "Data desconhecida"
 
     const diffSeconds = (Date.now() - date.getTime()) / 1000
 
@@ -38,19 +41,6 @@ function formatDate(isoString) {
     }
 
     return dateFormatter.format(date)
-}
-
-function objectiveModifierClass(goal) {
-    switch (goal) {
-        case "success":
-            return "is-success"
-        case "failure":
-            return "is-failure"
-        case "partial":
-            return "is-partial"
-        default:
-            return "is-unknown"
-    }
 }
 
 function stripExtension(name = "") {
@@ -70,7 +60,6 @@ function getSummary(transcriptionRaw) {
 const SKELETON_COUNT = 15
 
 const Analysis = () => {
-    const navigate = useNavigate()
     const [pendingDeleteId, setPendingDeleteId] = useState(null)
 
     const {
@@ -89,24 +78,18 @@ const Analysis = () => {
 
     const isEmpty = !isListLoading && !listError && list.length === 0
 
-    const requestDelete = useCallback((e, id) => {
-        e.stopPropagation()
-        setPendingDeleteId(id)
-    }, [])
+    const cancelDelete = useCallback(() => setPendingDeleteId(null), [])
 
-    const cancelDelete = useCallback((e) => {
-        e.stopPropagation()
-        setPendingDeleteId(null)
-    }, [])
-
-    const confirmDelete = useCallback(async (e, id) => {
-        e.stopPropagation()
+    const confirmDelete = useCallback(async (id) => {
         try {
             await deleteAnalysis(id)
-        } finally {
             setPendingDeleteId(null)
+        } catch {
+            // o erro fica visível no card via deleteError
         }
     }, [deleteAnalysis])
+
+    const stop = (event) => event.stopPropagation()
 
     return (
         <main className="analysis-main">
@@ -121,76 +104,108 @@ const Analysis = () => {
                         </div>
                         <Link to="/analysis/new"><NewTab size={14} />Nova análise</Link>
                     </header>
+
                     <section className="analysis-grid-main">
-                        {isListLoading ?
-                            <section className="analysis-grid">
+                        {isListLoading &&
+                            <ul className="analysis-grid" aria-busy="true" aria-label="Carregando análises">
                                 {Array.from({ length: SKELETON_COUNT }).map((_, i) => (
-                                    <div key={i} className="analysis-card skeleton" />
+                                    <li key={i} className="analysis-card analysis-card-skeleton skeleton" />
                                 ))}
-                            </section>
-                            :
-                            listError ?
-                                <article className="analysis-empty">
-                                    <FileX size={35} />
-                                    <h1>Não foi possível carregar suas análises</h1>
-                                    <p>{listError}</p>
-                                </article>
-                                :
-                                isEmpty ?
-                                    <article className="analysis-empty">
-                                        <FaceDissatisfied size={35} />
-                                        <h1>Nenhuma análise por aqui</h1>
-                                        <p>Suas análises aparecerão aqui assim que você enviar sua primeira transcrição.</p>
-                                    </article>
-                                    :
-                                    <section className="analysis-grid">
-                                        {list.map((item) => {
-                                            const isPendingDelete = pendingDeleteId === item.id
-                                            return (
-                                                <article
-                                                    key={item.id}
-                                                    onClick={() => !isPendingDelete && navigate(`/analysis/${item.id}`)}
-                                                    className="analysis-card"
+                            </ul>
+                        }
+
+                        {!isListLoading && listError &&
+                            <article className="analysis-empty">
+                                <FileX size={32} />
+                                <h2>Não foi possível carregar suas análises</h2>
+                                <p>{listError}</p>
+                                <button type="button" onClick={() => fetchList(1)}>Tentar novamente</button>
+                            </article>
+                        }
+
+                        {isEmpty &&
+                            <article className="analysis-empty">
+                                <FaceDissatisfied size={32} />
+                                <h2>Nenhuma análise por aqui</h2>
+                                <p>Suas análises aparecerão aqui assim que você enviar sua primeira transcrição.</p>
+                            </article>
+                        }
+
+                        {!isListLoading && !listError && !isEmpty &&
+                            <ul className="analysis-grid">
+                                {list.map((item) => {
+                                    const goal = normalizeGoal(item.goal)
+                                    const isPendingDelete = pendingDeleteId === item.id
+                                    const title = stripExtension(item.title)
+
+                                    return (
+                                        <li key={item.id} className="analysis-card">
+                                            <header className="analysis-card-top">
+                                                <span className="analysis-tag" data-goal={GOALS[goal] ? goal : "unknown"}>
+                                                    <i />{GOALS[goal] ?? "Indefinido"}
+                                                </span>
+                                                <button
+                                                    type="button"
+                                                    className="analysis-card-icon"
+                                                    aria-label={`Excluir análise ${title}`}
+                                                    onClick={() => setPendingDeleteId(item.id)}
                                                 >
-                                                    {isPendingDelete ? (
-                                                        <section className="analysis-card-confirm-delete" onClick={(e) => e.stopPropagation()}>
-                                                            <h1>Excluir esta análise?</h1>
-                                                            <p>Esta ação é permanente e não poderá ser desfeita. Todos os dados relacionados a esta análise serão removidos.</p>
-                                                            <span>
-                                                                <button onClick={cancelDelete} disabled={isDeleting}>Cancelar</button>
-                                                                <button onClick={(e) => confirmDelete(e, item.id)} disabled={isDeleting}>
-                                                                    {isDeleting ? "Excluindo..." : "Confirmar"}
-                                                                </button>
-                                                            </span>
-                                                            {deleteError && <p className="analysis-card-error">{deleteError}</p>}
-                                                        </section>
-                                                    ) : (
-                                                        <button
-                                                            className="analysis-card-open-modal"
-                                                            onClick={(e) => requestDelete(e, item.id)}
-                                                        >
-                                                            <TrashCan size={14} />
-                                                        </button>
-                                                    )}
+                                                    <TrashCan size={14} />
+                                                </button>
+                                            </header>
+
+                                            <div className="analysis-card-heading">
+                                                <h2>
+                                                    <Link to={`/analysis/${item.id}`} className="analysis-card-link" title={title}>
+                                                        {title}
+                                                    </Link>
+                                                </h2>
+                                                <button type="button" className="analysis-card-icon" aria-label={`Renomear análise ${title}`}>
+                                                    <Edit size={14} />
+                                                </button>
+                                            </div>
+
+                                            <p className="analysis-card-summary">{getSummary(item.transcription)}</p>
+
+                                            <footer className="analysis-card-footer">
+                                                <dl>
                                                     <div>
-                                                        <p>{getSummary(item.transcription)}</p>
+                                                        <dt>Criada</dt>
+                                                        <dd><time dateTime={item.created_at}>{formatDate(item.created_at)}</time></dd>
                                                     </div>
-                                                    <article>
-                                                        <h1>{stripExtension(item.title)}</h1>
-                                                        <button><Edit size={14} /></button>
-                                                    </article>
-                                                    <section>
-                                                        <h2>Objetivo: <span className={objectiveModifierClass(item.goal)}>{GOAL_LABELS[item.goal] || "indefinido"}</span></h2>
-                                                        <h2>tam. da transcrição: <span>{item.size}</span></h2>
-                                                    </section>
-                                                    <footer className="analysis-card-footer">
-                                                        <p>{formatDate(item.created_at)}</p>
-                                                        <button><Download size={12} />PDF</button>
-                                                    </footer>
-                                                </article>
-                                            )
-                                        })}
-                                    </section>
+                                                    <div>
+                                                        <dt>Transcrição</dt>
+                                                        <dd>{item.size ?? "-"}</dd>
+                                                    </div>
+                                                </dl>
+                                                <button type="button" className="analysis-card-pdf" aria-label={`Baixar PDF de ${title}`}>
+                                                    <Download size={12} />PDF
+                                                </button>
+                                            </footer>
+
+                                            {isPendingDelete &&
+                                                <section
+                                                    className="analysis-card-confirm"
+                                                    role="alertdialog"
+                                                    aria-label="Confirmar exclusão"
+                                                    onClick={stop}
+                                                    onKeyDown={(e) => e.key === "Escape" && cancelDelete()}
+                                                >
+                                                    <h3>Excluir esta análise?</h3>
+                                                    <p>Esta ação é permanente e não poderá ser desfeita. Todos os dados relacionados a esta análise serão removidos.</p>
+                                                    {deleteError && <p className="analysis-card-error" role="alert">{deleteError}</p>}
+                                                    <div>
+                                                        <button type="button" onClick={cancelDelete} disabled={isDeleting} autoFocus>Cancelar</button>
+                                                        <button type="button" className="danger" onClick={() => confirmDelete(item.id)} disabled={isDeleting}>
+                                                            {isDeleting ? "Excluindo..." : "Excluir"}
+                                                        </button>
+                                                    </div>
+                                                </section>
+                                            }
+                                        </li>
+                                    )
+                                })}
+                            </ul>
                         }
                     </section>
                 </section>

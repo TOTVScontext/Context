@@ -33,7 +33,8 @@
     align-items: center;
     gap: 7px;
     font-family: "Libre Baskerville", serif;
-    font-size: 1.4rem;
+    font-size: 1.45rem;
+    font-weight: 400;
 }
 
 .newAnalysis-content div header p {
@@ -41,7 +42,7 @@
     width: 70%;
     text-align: center;
     font-size: 0.8rem;
-    font-weight: 400;
+    font-weight: 300;
 }
 
 .newAnalysis-content div header p span {
@@ -71,6 +72,7 @@
     margin-top: 5px;
     font-family: "Libre Baskerville", serif;
     font-size: 1.15rem;
+    font-weight: 500;
 }
 
 .newAnalysis-upload p {
@@ -161,7 +163,8 @@
 
 .newAnalysis-loading h1 {
     font-family: "Libre Baskerville", serif;
-    font-size: 1.3rem;
+    font-size: 1.45rem;
+    font-weight: 400;
 }
 
 
