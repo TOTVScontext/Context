@@ -58,7 +58,6 @@ function stripExtension(name = "") {
     return idx > 0 ? name.slice(0, idx) : name
 }
 
-/** `transcription` chega como string JSON; extraímos o resumo curto já gerado na análise. */
 function getSummary(transcriptionRaw) {
     try {
         const parsed = JSON.parse(transcriptionRaw)
