@@ -13,6 +13,7 @@ import Error from "./routes/Error"
 import NewAnalysis from "./routes/NewAnalysis"
 import Analysis from "./routes/Analysis"
 import ViewAnalysis from "./components/analysis/ViewAnalysis"
+import GenerateDashboard from "./routes/Dashboard"
 
 function App() {
 
@@ -32,6 +33,7 @@ function App() {
         <Route element={<ProtectedRoute />}>
           <Route path='/home' element={<Home />} />
           <Route path='/new' element={<NewAnalysis />} />
+          <Route path='/dashboard' element={<GenerateDashboard />} />
           <Route path='/analysis' element={<Analysis />} />
           <Route path='/analysis/:id' element={<ViewAnalysis />} />
           <Route path='/chat' element={<Chat />} >

@@ -56,7 +56,7 @@ const NewAnalysis = () => {
     useEffect(() => {
         if (!isLoading) return
 
-        const totalDuration = 50_000
+        const totalDuration = 80_000
         const stepDuration = totalDuration / (analysisSteps.length - 1)
 
         const timer = setTimeout(() => {
