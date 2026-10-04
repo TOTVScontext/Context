@@ -9,8 +9,8 @@ export class NewsApiError extends Error {
 
 async function request(action, { query = {}, signal } = {}) {
     const params = new URLSearchParams({ action, ...query })
-
-    const response = await fetch(`https://api-context-java.onrender.com/api/news?${params.toString()}`, {
+    // https://api-context-java.onrender.com/api/news
+    const response = await fetch(`https://api-totvs-context.vercel.app/api/news?${params.toString()}`, {
         method: 'GET',
         credentials: 'include',
         signal,
