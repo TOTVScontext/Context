@@ -212,11 +212,14 @@ const NewAnalysis = () => {
                 </section>
             </section>
             {isDragging &&
-                <div className='newAnalysis-drop'>
-                    <DocumentImport size={50} />
-                    <h1>Solte para continuar</h1>
-                    <p>Arraste o arquivo até aqui e deixe o Context fazer o resto.</p>
-                </div>}
+                <main className='newAnalysis-drop'>
+                    <div>
+                        <DocumentImport size={45} />
+                        <h1>Solte para continuar</h1>
+                        <p>Arraste o arquivo até aqui e deixe o Context fazer o resto.</p>
+                    </div>
+                </main>
+            }
         </main>
     )
 }
