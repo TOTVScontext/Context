@@ -125,7 +125,7 @@ const Giveaway = () => {
             try {
                 localStorage.setItem(STORAGE_KEY, '1')
             } catch {
-                // silencioso — a tela de sucesso já foi exibida via isSuccess
+                // silencioso.. a tela de sucesso já foi exibida via isSuccess
             }
         }
     }

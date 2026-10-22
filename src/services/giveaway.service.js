@@ -24,7 +24,7 @@ export const GiveawayService = {
         })
 
         if (!res.ok) {
-            throw await toApiError(res, 'Erro ao registrar inscrição no giveaway.')
+            throw await toApiError(res, 'Erro ao registrar inscrição no sorteio.')
         }
 
         return res.json()
