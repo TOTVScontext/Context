@@ -14,6 +14,7 @@ import NewAnalysis from "./routes/NewAnalysis"
 import Analysis from "./routes/Analysis"
 import ViewAnalysis from "./components/analysis/ViewAnalysis"
 import GenerateDashboard from "./routes/Dashboard"
+import Giveaway from "./routes/Giveaway"
 
 function App() {
 
@@ -30,6 +31,7 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/welcome' element={<Welcome />} />
         <Route path='/cli' element={<Cli />} />
+        <Route path='/giveaway' element={<Giveaway />} />
         <Route element={<ProtectedRoute />}>
           <Route path='/home' element={<Home />} />
           <Route path='/new' element={<NewAnalysis />} />
